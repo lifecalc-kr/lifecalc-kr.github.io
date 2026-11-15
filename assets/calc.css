@@ -463,19 +463,23 @@ details.faq .a p:last-child { margin-bottom: 0; }
 /* ── 더치페이 참여자 ──────────────────────────────────── */
 .members { display: grid; gap: 9px; margin-top: 4px; }
 .member {
-  display: grid; grid-template-columns: minmax(0, 1fr) 140px 44px; gap: 8px; align-items: center;
+  display: grid; grid-template-columns: minmax(0, 1fr) 140px auto 44px; gap: 8px; align-items: center;
   padding: 10px; border: 1px solid var(--line); border-radius: var(--r-sm); background: var(--card);
 }
 .member .mname { font-size: 15px; font-weight: 800; padding: 9px 11px; }
 .member select { padding: 9px 30px 9px 11px; font-size: 12.5px; font-weight: 700; background-position: right 9px center; }
-.member .mdrink { grid-column: 1 / -1; margin: 0; }
+.member .mdrink {
+  grid-column: auto; margin: 0; font-size: 12.5px; font-weight: 700;
+  white-space: nowrap; color: var(--ink-2); gap: 6px;
+}
+.member .mdrink input[type="checkbox"] { width: 16px; height: 16px; }
 .member .del {
   width: 40px; height: 40px; padding: 0; display: grid; place-items: center;
   font-size: 17px; line-height: 1; color: var(--muted-2);
   background: transparent; border: 1px solid var(--line); border-radius: 10px; cursor: pointer;
 }
 .member .del:hover { color: var(--danger); border-color: var(--danger); background: var(--danger-soft); }
-@media (max-width: 460px) {
+@media (max-width: 560px) {
   .member { grid-template-columns: minmax(0, 1fr) 40px; }
   .member .mname { grid-column: 1; grid-row: 1; }
   .member .del { grid-column: 2; grid-row: 1; }
