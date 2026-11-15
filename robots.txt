@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://fuuckuyooou-sys.github.io/sitemap.xml
+Sitemap: https://lifecalc-kr.github.io/sitemap.xml

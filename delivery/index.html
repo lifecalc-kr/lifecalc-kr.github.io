@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>배달앱 수수료 계산기 2026 | 배민·쿠팡이츠·요기요 순수익·마진 비교 — 마진노트</title>
+<meta name="description" content="배민·쿠팡이츠·요기요의 중개이용료·결제수수료·배달비·부가세를 한 번에 계산하세요. 2만원 주문에서 통장에 남는 순수익과 마진율을 앱별로 나란히 비교합니다. 회원가입·설치 없이 무료.">
+<meta name="keywords" content="배달앱 수수료 계산기, 배민 수수료 계산기, 쿠팡이츠 수수료, 요기요 수수료, 배달앱 순수익, 배달 마진 계산, 중개이용료, 상생요금제, 배달비, 부가세, 사장님 계산기">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="마진노트">
+<meta name="theme-color" content="#14161c">
+<meta name="format-detection" content="telephone=no">
+
+<link rel="canonical" href="https://lifecalc-kr.github.io/delivery/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="마진노트">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="배달앱 수수료 계산기 — 배민·쿠팡이츠·요기요 순수익 비교">
+<meta property="og:description" content="중개이용료·결제수수료·배달비·부가세를 모두 반영해 주문 1건에 남는 돈과 마진율을 앱별로 비교합니다.">
+<meta property="og:url" content="https://lifecalc-kr.github.io/delivery/">
+<meta property="og:image" content="https://lifecalc-kr.github.io/delivery/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="배달앱 수수료 계산기 — 마진노트">
+<meta name="twitter:description" content="배민·쿠팡이츠·요기요. 같은 주문, 어디서 팔면 얼마 남을까?">
+<meta name="twitter:image" content="https://lifecalc-kr.github.io/delivery/og-image.png">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23e8590c'/%3E%3Ctext x='50' y='73' font-size='56' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'%3E%E2%82%A9%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="assets/styles.css">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     Google AdSense 스크립트 (pub-2493112023638381)
+     애드센스 승인 후 아래 주석을 해제하면 본문의 광고 슬롯이 활성화됩니다.
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2493112023638381" crossorigin="anonymous"></script>
+     ═══════════════════════════════════════════════════════════════ -->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "마진노트 — 배달앱 수수료·순수익 계산기",
+      "url": "https://lifecalc-kr.github.io/delivery/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "ko-KR",
+      "description": "배민·쿠팡이츠·요기요의 중개이용료, 결제수수료, 사장님 부담 배달비, 부가세를 반영해 주문 1건의 정산금과 순수익, 마진율을 계산하고 비교하는 무료 웹 앱.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+      "featureList": [
+        "배달앱 3사 8개 주문유형 요금제 반영",
+        "매출 구간별 중개이용료·배달비 자동 적용",
+        "중개이용료·결제수수료·배달비에 붙는 부가세 반영",
+        "식자재 원가율·포장용기비·사장님 부담 할인 반영 순수익 계산",
+        "앱별 순수익·마진율 나란히 비교"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "2026년 11월 기준 요율이 맞나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "배민과 쿠팡이츠는 2025년에 시작한 상생요금제를 3년간 운영합니다. 배민은 2028년 2월 25일까지, 쿠팡이츠는 2028년 3월까지 매출 구간에 따라 중개이용료 2.0~7.8%와 사장님 부담 배달비 1,900~3,400원이 적용됩니다(모두 부가세 별도). 요기요는 라이트 요금제 기준 9.7%에 배달대행 이용료 2,900원이며, 성과에 따라 최저 4.7%까지 내려갑니다. 요율은 바뀔 수 있으므로 사장님 포털에 표시된 내 적용값을 먼저 확인하세요." }
+        },
+        {
+          "@type": "Question",
+          "name": "내 매출 구간은 어떻게 알 수 있나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "배민은 최근 3개월 배민배달 매출(사장님 부담 할인 제외)을 영업일수로 나눈 하루 평균으로 구간을 정해 3개월마다 적용합니다. 신규 입점은 상위 35% 구간(7.8%)에서 시작합니다. 쿠팡이츠는 매달 1일부터 말일까지 실제 매출로 구간을 정하고, 우선 7.8%로 정산한 뒤 다음 달 5영업일 안에 차액을 환급합니다. 배민은 배민셀프서비스의 '배민배달 매출 규모 분류', 쿠팡이츠는 사장님 포털에서 확인할 수 있습니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "쿠팡이츠는 왜 할인 전 금액에 수수료를 매기나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "쿠팡이츠 약관은 수수료 산정 기준을 '할인 전 판매가'로 정하고 있습니다. 다만 공정거래위원회가 2026년 10월 27일 사장님 부담 할인액에 중개·결제수수료를 부과하는 약관에 시정명령을 내렸고, 쿠팡이츠는 60일 안에 약관을 고쳐야 합니다. 계산기의 '수수료 산정 기준'에서 할인 전과 할인 후를 모두 계산해 볼 수 있습니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "부가세는 왜 두 번 붙나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "서로 다른 세금이기 때문입니다. 첫째, 플랫폼이 중개이용료·결제수수료·배달비를 받을 때 10% 부가세를 함께 받습니다. 요율표의 숫자는 모두 부가세 별도입니다. 이 부가세는 매입세액으로 신고 때 공제됩니다. 둘째, 손님이 낸 음식값에는 매출 부가세가 포함돼 있어(2만원이면 약 1,818원) 나중에 납부합니다. 계산기는 첫째를 항상 반영하고, '매출 부가세까지 반영'을 켜면 둘째까지 뺀 세후 순수익을 보여줍니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "포장·픽업 주문도 수수료를 내나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "네. 배민 픽업은 2025년 4월 14일부터 6.8%, 쿠팡이츠 포장은 2026년 4월 1일부터 6.8%, 요기요 포장은 7.7%입니다(부가세 별도). 쿠팡이츠는 전통시장과 매출 하위 20% 매장의 포장 중개이용료를 2027년 3월 31일까지 환급합니다. 배달비는 없지만 결제수수료와 부가세는 붙습니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "배달비는 왜 지역마다 다른가요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "배민은 지역별 평균 배달거리와 배달비를 반영해 사장님 부담 배달비를 다르게 고지합니다. 상위 35% 구간 기준으로 서울·경기 주요 시가 3,400원으로 가장 높고 경북 포항·경남 양산이 2,400원으로 가장 낮습니다. 쿠팡이츠도 같은 1,900~3,400원 밴드를 쓰지만 지역별 세부 금액은 공개하지 않고 포털에서 자동 설정되므로, 계산기의 배달비를 직접 고쳐 확인하는 편이 정확합니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "요기요 4.7%는 아무나 받을 수 있나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "아닙니다. 요기요 라이트의 기본 주문중개 이용료는 9.7%이고, 가게의 주문·매출 성과에 따라 단계적으로 내려가 최저 4.7%가 적용됩니다. 적용 기준은 가게별로 안내되며 사장님사이트의 '가게관리 > 기본설정'에서 현재 요율을 확인할 수 있습니다. 요기패스X 같은 멤버십 혜택이 적용된 주문에는 1.2%p가 더 붙습니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "광고비나 가맹 로열티도 계산에 들어가나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "아니요. 사장님이 부담하는 할인·쿠폰 금액은 입력할 수 있지만, 우리가게클릭·요타임딜 같은 광고비, 가맹 로열티, 자체배달 대행료, 인건비와 임대료는 이 계산기에 포함되지 않습니다. 이 계산기는 주문 1건의 정산 구조만 계산합니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "계산 결과와 실제 정산서 금액이 다른 이유는?",
+          "acceptedAnswer": { "@type": "Answer", "text": "실제 정산은 주문별 할인·쿠폰 분담, 거리와 시간대별 배달비, 우대수수료 적용 여부, 프로모션, 부분 취소 등으로 달라집니다. 이 계산기는 공개된 요율표로 계산한 참고값입니다. 정확한 금액은 각 플랫폼의 정산서와 사장님 포털에서 확인하세요." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="./" aria-label="마진노트 홈">
+      <span class="brand-mark" aria-hidden="true">₩</span>
+      마진노트 <small>MARGIN NOTE</small>
+    </a>
+    <span class="status-pill" role="status">
+      <span class="dot" aria-hidden="true"></span>
+      <span>2026.11 요금 기준</span>
+    </span>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <h1>배달앱 수수료 떼고, <span class="hl">얼마 남을까</span></h1>
+    <p>배민·쿠팡이츠·요기요의 중개이용료, 결제수수료, 사장님 부담 배달비, 부가세까지 반영해 <strong>주문 1건의 순수익과 마진율</strong>을 계산합니다.</p>
+    <div class="hstats" aria-label="2026년 11월 요율 요약">
+      <span class="hstat"><b>2.0~7.8%</b> 배민·쿠팡이츠 중개이용료</span>
+      <span class="hstat"><b>9.7%</b> 요기요 라이트</span>
+      <span class="hstat"><b>1,900~3,400원</b> 사장님 부담 배달비</span>
+      <span class="hstat"><b>+10%</b> 부가세 별도</span>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       [AD SLOT 1] 본문 상단 · 반응형
+       애드센스 승인 후 아래 주석을 풀고 data-ad-slot 값만 교체하세요.
+       (pub-2493112023638381)
+  <ins class="adsbygoogle" style="display:block"
+       data-ad-client="ca-pub-2493112023638381"
+       data-ad-slot="0000000000"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="ad-slot" data-ad="top" aria-hidden="true">광고 영역 · AD SLOT 1</div>
+
+  <section class="card calc" id="calc" aria-labelledby="calcTitle">
+    <div class="calc-head">
+      <h2 id="calcTitle">주문 1건, 얼마 남을까</h2>
+      <p>금액과 조건을 바꾸면 결과가 바로 바뀝니다. 입력값은 이 브라우저에만 저장됩니다.</p>
+    </div>
+
+    <div class="calc-grid">
+      <div class="inputs">
+
+        <div class="field">
+          <label class="field-label" for="orderAmount">주문 금액 <span>고객이 낸 음식값</span></label>
+          <div class="money">
+            <input id="orderAmount" type="text" inputmode="numeric" autocomplete="off" spellcheck="false" value="20,000" aria-describedby="orderHint">
+            <span class="unit">원</span>
+          </div>
+          <div class="chips" id="orderChips"></div>
+          <p class="hint" id="orderHint">배달팁(고객 부담)은 빼고 음식값만 넣으세요.</p>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label class="field-label" for="costRate">식자재 원가율</label>
+            <div class="num-box">
+              <input id="costRate" type="number" min="0" max="100" step="1" value="35" inputmode="decimal">
+              <span>%</span>
+            </div>
+            <div class="chips" id="costChips"></div>
+          </div>
+          <div class="field">
+            <label class="field-label" for="container">포장·용기비</label>
+            <div class="num-box">
+              <input id="container" type="number" min="0" step="100" value="500" inputmode="numeric">
+              <span>원</span>
+            </div>
+            <div class="chips" id="containerChips"></div>
+          </div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="discount">사장님이 부담한 할인·쿠폰</label>
+          <div class="num-box">
+            <input id="discount" type="number" min="0" step="500" value="0" inputmode="numeric">
+            <span>원</span>
+          </div>
+          <div class="chips" id="discountChips"></div>
+          <p class="hint">내가 비용을 낸 할인만 넣으세요. 플랫폼이 부담한 할인은 넣지 않습니다.</p>
+        </div>
+
+        <h3 class="sub-h">어디서 팔았나요</h3>
+
+        <div class="seg" id="platformSeg" role="tablist" aria-label="플랫폼 선택">
+          <button type="button" role="tab" data-platform="baemin" aria-selected="true">배민</button>
+          <button type="button" role="tab" data-platform="coupang" aria-selected="false">쿠팡이츠</button>
+          <button type="button" role="tab" data-platform="yogiyo" aria-selected="false">요기요</button>
+        </div>
+
+        <div class="seg seg-service" id="serviceSeg" role="tablist" aria-label="주문 유형 선택"></div>
+
+        <div class="row2">
+          <div class="field" id="tierField">
+            <label class="field-label" for="tierSelect">매출 구간 <span>배민·쿠팡이츠</span></label>
+            <div class="select">
+              <select id="tierSelect">
+                <option value="t1">상위 35% 이내 · 신규 (7.8%)</option>
+                <option value="t2">35% 초과 ~ 50% (6.8%)</option>
+                <option value="t3">50% 초과 ~ 80% (6.8%)</option>
+                <option value="t4">80% 초과 ~ 100% (2.0%)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field" id="rateField" hidden>
+            <label class="field-label" for="rateSelect">적용 요율 <span>요기요</span></label>
+            <div class="select">
+              <select id="rateSelect">
+                <option value="9.7">라이트 9.7% (기본)</option>
+                <option value="8.7">성과 인하 8.7%</option>
+                <option value="7.7">성과 인하 7.7%</option>
+                <option value="4.7">성과 인하 최저 4.7%</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="field" id="fixedFeeField" hidden>
+            <span class="field-label">중개이용료</span>
+            <div class="fixed-fee">
+              <b id="fixedFeeText">6.8%</b>
+              <span id="fixedFeeDesc"></span>
+            </div>
+          </div>
+
+          <div class="field" id="regionField">
+            <label class="field-label" for="regionSelect">지역 <span>배달비 자동</span></label>
+            <div class="select">
+              <select id="regionSelect">
+                <option value="seoul">서울 · 경기 주요 시</option>
+                <option value="incheon">인천</option>
+                <option value="metro">부산·대구·광주·대전·세종</option>
+                <option value="etc">그 외 지역</option>
+                <option value="pohang">경북 포항 · 경남 양산</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label class="field-label" for="pgRate">결제수수료율</label>
+            <div class="num-box">
+              <input id="pgRate" type="number" min="0" max="20" step="0.1" value="3.0" inputmode="decimal">
+              <span>%</span>
+            </div>
+            <div class="chips" id="pgChips"></div>
+          </div>
+          <div class="field">
+            <label class="field-label" for="deliveryFee">사장님 부담 배달비</label>
+            <div class="num-box">
+              <input id="deliveryFee" type="text" inputmode="numeric" value="3,400" aria-describedby="deliveryHint">
+              <span>원</span>
+            </div>
+            <p class="hint" id="deliveryHint"></p>
+          </div>
+        </div>
+
+        <label class="check" id="membershipField" hidden>
+          <input type="checkbox" id="membership">
+          요기패스X 등 멤버십 혜택 주문 (+1.2%p)
+        </label>
+
+        <p class="hint pg-note" id="pgNote"></p>
+
+        <details class="adv">
+          <summary>고급 설정 · 수수료 기준과 부가세</summary>
+          <div class="adv-body">
+            <div class="field">
+              <label class="field-label" for="feeBase">수수료 산정 기준 금액 <span id="basisTag">할인 후 금액 기준</span></label>
+              <div class="select">
+                <select id="feeBase">
+                  <option value="platform">플랫폼 기본 (배민·요기요 할인 후 / 쿠팡이츠 할인 전)</option>
+                  <option value="after">할인 후 금액 (실결제)</option>
+                  <option value="before">할인 전 금액 (판매가)</option>
+                </select>
+              </div>
+              <p class="hint" id="feeBaseNote"></p>
+            </div>
+
+            <label class="check">
+              <input type="checkbox" id="salesVat">
+              매출 부가세(10%)까지 빼고 계산 (일반과세자)
+            </label>
+            <p class="hint">음식값에 포함된 매출 부가세에서 수수료 매입 부가세를 뺀 금액을 한 번 더 차감합니다.</p>
+
+            <div class="field monthly">
+              <label class="field-label" for="monthlyOrders">월 주문 건수</label>
+              <div class="num-box">
+                <input id="monthlyOrders" type="number" min="0" step="10" value="300" inputmode="numeric">
+                <span>건</span>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <aside class="result">
+        <div class="res-card">
+          <p class="res-label" id="resLabel">이 주문, 통장에 남는 돈</p>
+          <p class="res-value"><span id="resProfit">0</span><span class="won">원</span></p>
+          <p class="res-margin" id="resMargin">마진율 <b>0%</b></p>
+
+          <div class="res-fee">
+            <span>플랫폼에 낸 돈</span>
+            <b id="resFeeTotal">0원</b>
+            <span id="resFeeRate"></span>
+          </div>
+
+          <div class="res-bar" id="resBar" aria-hidden="true"></div>
+          <div class="res-legend" id="resLegend"></div>
+
+          <p class="res-warn" id="resWarn" hidden></p>
+
+          <dl class="res-rows" id="resRows"></dl>
+          <p class="res-note">중개이용료·결제수수료·배달비는 부가세 별도 고지값이라 10%를 더해 계산했습니다.</p>
+          <p class="res-month" id="resMonth"></p>
+
+          <div class="res-actions">
+            <button type="button" id="copyBtn">결과 복사</button>
+            <button type="button" id="resetBtn">초기화</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="cmpTitle">
+    <div class="sec-head">
+      <div>
+        <h2 id="cmpTitle">같은 주문, 앱을 바꾸면?</h2>
+        <p id="cmpFoot">조건은 그대로 두고 플랫폼과 주문유형만 바꿔 순수익을 비교합니다.</p>
+      </div>
+    </div>
+    <div class="card cmp-card">
+      <div class="cmp-scroll">
+        <table class="cmp">
+          <caption class="visually-hidden">플랫폼·주문유형별 차감액과 순수익 비교표</caption>
+          <thead>
+            <tr>
+              <th scope="col">채널</th>
+              <th scope="col" class="hide-sm">중개이용료</th>
+              <th scope="col">차감 합계</th>
+              <th scope="col">순수익</th>
+              <th scope="col">마진율</th>
+            </tr>
+          </thead>
+          <tbody id="cmpBody"></tbody>
+        </table>
+      </div>
+      <p class="note" id="cmpNote">차감 합계에는 중개이용료·결제수수료·배달비와 각각의 부가세가 모두 들어 있습니다. 광고비와 가맹 로열티는 빠져 있습니다.</p>
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       [AD SLOT 2] 본문 중간 · 반응형 (pub-2493112023638381)
+  <ins class="adsbygoogle" style="display:block"
+       data-ad-client="ca-pub-2493112023638381"
+       data-ad-slot="0000000000"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="ad-slot" data-ad="mid" aria-hidden="true">광고 영역 · AD SLOT 2</div>
+
+  <section class="sec" aria-labelledby="tierTitle">
+    <div class="sec-head">
+      <div>
+        <h2 id="tierTitle">매출 구간이 바뀌면 얼마나 달라질까</h2>
+        <p>같은 주문이라도 배민·쿠팡이츠 매출 구간에 따라 중개이용료와 배달비가 함께 움직입니다.</p>
+      </div>
+    </div>
+    <div class="card cmp-card">
+      <div class="cmp-scroll">
+        <table class="cmp tier">
+          <caption class="visually-hidden">매출 구간별 배민·쿠팡이츠 순수익 비교</caption>
+          <thead>
+            <tr>
+              <th scope="col">매출 구간</th>
+              <th scope="col">중개이용료</th>
+              <th scope="col" class="hide-sm">배달비</th>
+              <th scope="col" class="hide-sm">차감 합계</th>
+              <th scope="col" id="tierProfitHead">배민 순수익</th>
+            </tr>
+          </thead>
+          <tbody id="tierBody"></tbody>
+        </table>
+      </div>
+      <p class="note">결제수수료는 양사 기본 3.0%, 배달비는 선택한 지역 기준입니다. 괄호 안은 마진율. 배민과 쿠팡이츠는 구간별 요율과 배달비가 같아 결과도 같고, 사장님 부담 할인을 넣으면 쿠팡이츠만 할인 전 금액에 수수료를 매기므로 차이가 생깁니다.</p>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="guideTitle">
+    <div class="card guide">
+      <h2 id="guideTitle">이 계산기는 이렇게 계산합니다</h2>
+
+      <div class="formula">
+        <p><b>정산금</b> = 고객 실결제 − (중개이용료 + 결제수수료 + 사장님 부담 배달비) × 1.1</p>
+        <p><b>순수익</b> = 정산금 − (판매가 × 원가율) − 포장·용기비</p>
+        <p><b>마진율</b> = 순수익 ÷ 고객 실결제 × 100</p>
+      </div>
+
+      <p>핵심은 <strong>“요율 × 주문금액”이 전부가 아니라는 점</strong>입니다. 세 가지가 결과를 크게 흔듭니다.</p>
+
+      <h3>1. 배달비는 정액이라 주문이 작을수록 무거워집니다</h3>
+      <p>서울 상위 35% 구간의 사장님 부담 배달비는 3,400원입니다. 2만원 주문에서 중개이용료 7.8%(1,560원)보다 배달비가 두 배 넘게 큽니다. 같은 3,400원이 1만원 주문에서는 주문금액의 34%가 됩니다. 그래서 객단가가 낮은 메뉴는 수수료율을 낮춰도 남는 돈이 늘지 않는 경우가 많습니다.</p>
+
+      <h3>2. 부가세는 요율표 밖에 있습니다</h3>
+      <p>배민·쿠팡이츠·요기요가 고지하는 중개이용료, 결제수수료, 배달비는 모두 <strong>부가세 별도</strong>입니다. 2만원 주문 기준 중개이용료 1,560원에 156원, 결제수수료 600원에 60원, 배달비 3,400원에 340원이 각각 더해집니다. 이 부가세는 매입세액으로 공제되지만, 정산되는 순간에는 통장에서 빠져나갑니다.</p>
+
+      <h3>3. 할인을 내가 부담하면 수수료 기준금액이 달라집니다</h3>
+      <p>사장님이 3,000원을 할인해 주면 고객은 2만 2,000원을 냅니다. 배민과 요기요는 이 <strong>할인 후 금액</strong>에, 쿠팡이츠는 약관상 <strong>할인 전 판매가</strong>에 수수료를 매깁니다. 같은 7.8%라도 주문당 234원(부가세 포함) 차이가 납니다. 쿠팡이츠는 공정위 시정명령으로 이 기준을 고쳐야 하는 상황이라, 고급 설정에서 두 기준을 모두 계산해 볼 수 있게 했습니다.</p>
+
+      <h3>2026년 11월, 배달앱 3사 요율</h3>
+      <div class="tbl-scroll">
+        <table class="fee">
+          <caption class="visually-hidden">2026년 11월 배달앱 3사 요율표</caption>
+          <thead>
+            <tr><th scope="col">플랫폼</th><th scope="col">주문유형</th><th scope="col">중개이용료</th><th scope="col">사장님 부담 배달비</th><th scope="col">결제수수료</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row" rowspan="2">배민</th><td>배민배달</td><td>2.0~7.8%<small>구간별</small></td><td>1,900~3,400원<small>지역·구간</small></td><td>1.40~3.00%<small>매출 구간</small></td></tr>
+            <tr><td>픽업</td><td>6.8%</td><td>없음</td><td>1.40~3.00%</td></tr>
+            <tr><th scope="row" rowspan="2">쿠팡이츠</th><td>배달</td><td>2.0~7.8%<small>구간별</small></td><td>1,900~3,400원</td><td>3.0%<small>우대 환급</small></td></tr>
+            <tr><td>포장</td><td>6.8%<small>영세 0%</small></td><td>없음</td><td>3.0%</td></tr>
+            <tr><th scope="row" rowspan="2">요기요</th><td>요기배달</td><td>9.7%<small>최저 4.7%</small></td><td>2,900원</td><td>계약별<small>3.3% 참고</small></td></tr>
+            <tr><td>포장</td><td>7.7%</td><td>없음</td><td>계약별</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">모두 부가세 별도 기준입니다. 배민은 2026년 2월 26일 배민1플러스 → 배민배달, 오픈리스트 → 가게배달, 배민포장주문 → 픽업으로 이름만 바꿨고 요금은 그대로입니다. 쿠팡이츠의 이전 스마트요금제(중개이용료 9.8%)는 2025년 4월 1일부터 상생요금제로 대체됐습니다. 자세한 출처는 페이지 하단에 있습니다.</p>
+
+      <h3>배민 지역별 사장님 부담 배달비</h3>
+      <div class="tbl-scroll">
+        <table class="fee region">
+          <caption class="visually-hidden">배민 지역별 사장님 부담 배달비</caption>
+          <thead>
+            <tr><th scope="col">지역</th><th scope="col">상위 35% · 신규</th><th scope="col">35~50%</th><th scope="col">50~100%</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">서울 · 경기 주요 시</th><td>3,400원</td><td>3,100원</td><td>2,900원</td></tr>
+            <tr><th scope="row">인천</th><td>3,300원</td><td>3,000원</td><td>2,800원</td></tr>
+            <tr><th scope="row">부산·대구·광주·대전·세종</th><td>3,100원</td><td>2,800원</td><td>2,600원</td></tr>
+            <tr><th scope="row">그 외 지역</th><td>3,000원</td><td>2,700원</td><td>2,500원</td></tr>
+            <tr><th scope="row">경북 포항 · 경남 양산</th><td>2,400원</td><td>2,100원</td><td>1,900원</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">배민이 고지한 지역별 표를 옮겼습니다. 쿠팡이츠도 같은 1,900~3,400원 밴드를 적용하지만 지역별 세부 금액은 공개하지 않으므로, 계산기에서는 선택한 지역의 배민 기준 값을 기본으로 넣고 직접 수정할 수 있게 했습니다.</p>
+
+      <h3>이 계산기에 없는 비용</h3>
+      <ul>
+        <li><strong>광고비</strong> — 우리가게클릭, 요타임딜, 추천광고 등. 쓰는 만큼 주문당 단가가 올라갑니다.</li>
+        <li><strong>가맹 로열티</strong> — 가맹점이라면 본사에 내는 몫이 따로 있습니다.</li>
+        <li><strong>자체배달·대행 배달비</strong> — 가게배달(6.8%)은 배달을 직접 하거나 대행사에 맡기므로 대행료가 별도입니다.</li>
+        <li><strong>인건비·임대료·공과금</strong> — 주문 1건에 직접 배분하기 어려운 고정비입니다.</li>
+      </ul>
+      <p>그래서 이 계산기의 “순수익”은 <strong>재료비와 용기비를 뺀 공헌이익</strong>에 가깝습니다. 월세와 인건비를 빼기 전 숫자라는 점을 감안해 주세요.</p>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="faqTitle">
+    <div class="sec-head"><div><h2 id="faqTitle">자주 묻는 질문</h2></div></div>
+
+    <details class="faq" open>
+      <summary>2026년 11월 기준 요율이 맞나요?</summary>
+      <div class="a"><p>배민과 쿠팡이츠는 2025년에 시작한 상생요금제를 3년간 운영합니다. 배민은 2028년 2월 25일까지, 쿠팡이츠는 2028년 3월까지 매출 구간에 따라 중개이용료 2.0~7.8%, 사장님 부담 배달비 1,900~3,400원이 적용됩니다(모두 부가세 별도). 요기요는 라이트 요금제 기준 9.7%에 배달대행 이용료 2,900원이고, 성과에 따라 최저 4.7%까지 내려갑니다.</p><p>요율은 바뀔 수 있으니 사장님 포털에 표시된 내 적용값을 먼저 확인하세요. 이 페이지는 2026년 11월 16일에 확인한 공개 요율표를 기준으로 합니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>내 매출 구간은 어떻게 알 수 있나요?</summary>
+      <div class="a"><p>배민은 최근 3개월 배민배달 매출(사장님 부담 할인 제외)을 영업일수로 나눈 하루 평균으로 구간을 정해 3개월마다 적용합니다. 신규 입점은 상위 35% 구간(7.8%)에서 시작합니다. 확인 위치는 배민셀프서비스의 <em>배민배달 매출 규모 분류</em>입니다.</p><p>쿠팡이츠는 매달 1일부터 말일까지 실제 매출로 구간을 정하고, 우선 7.8%로 정산한 뒤 다음 달 5영업일 안에 차액을 환급합니다. 그래서 매출이 들쭉날쭉한 가게는 배민보다 구간이 빨리 내려갑니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>쿠팡이츠는 왜 할인 전 금액에 수수료를 매기나요?</summary>
+      <div class="a"><p>쿠팡이츠 약관이 수수료 산정 기준을 “할인 전 판매가”로 정하고 있기 때문입니다. 다만 공정거래위원회가 2026년 10월 27일 사장님 부담 할인액에 중개·결제수수료를 부과하는 약관에 시정명령을 내렸고, 쿠팡이츠는 60일 안에 약관을 고쳐야 합니다.</p><p>그래서 계산기의 <em>고급 설정 → 수수료 산정 기준</em>에서 할인 전과 할인 후를 모두 계산해 볼 수 있게 했습니다. 배민은 음식값 할인을 이미 수수료 기준에서 빼고 있고, 2026년 11월 12일 배달팁 할인까지 빼는 약관 개정을 예고했습니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>부가세는 왜 두 번 붙나요?</summary>
+      <div class="a"><p>서로 다른 세금입니다. ① 플랫폼이 중개이용료·결제수수료·배달비를 받을 때 10% 부가세를 함께 받습니다. 요율표의 숫자는 모두 부가세 별도입니다. 이 부가세는 매입세액으로 신고 때 공제됩니다. ② 손님이 낸 음식값에는 매출 부가세가 포함돼 있습니다. 2만원이면 약 1,818원으로, 나중에 납부합니다.</p><p>계산기는 ①을 항상 반영하고, <em>매출 부가세까지 반영</em>을 켜면 ②에서 ①의 매입세액을 뺀 금액까지 차감한 세후 순수익을 보여줍니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>포장·픽업 주문도 수수료를 내나요?</summary>
+      <div class="a"><p>네. 배민 픽업은 2025년 4월 14일부터 6.8%, 쿠팡이츠 포장은 2026년 4월 1일부터 6.8%, 요기요 포장은 7.7%입니다(부가세 별도). 쿠팡이츠는 전통시장과 매출 하위 20% 매장의 포장 중개이용료를 2027년 3월 31일까지 환급합니다.</p><p>배달비는 없지만 결제수수료와 부가세는 붙습니다. 4만원 포장 주문이면 중개이용료와 부가세를 합쳐 약 2,990원이 나갑니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>배달비는 왜 지역마다 다른가요?</summary>
+      <div class="a"><p>배민은 지역별 평균 배달거리와 배달비를 반영해 사장님 부담 배달비를 다르게 고지합니다. 상위 35% 구간 기준으로 서울·경기 주요 시가 3,400원으로 가장 높고, 경북 포항·경남 양산이 2,400원으로 가장 낮습니다.</p><p>쿠팡이츠도 같은 1,900~3,400원 밴드를 쓰지만 지역별 세부 금액은 공개하지 않고 포털에서 자동 설정합니다. 계산기의 배달비 칸을 포털에 표시된 금액으로 직접 고치면 더 정확합니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>요기요 4.7%는 아무나 받을 수 있나요?</summary>
+      <div class="a"><p>아닙니다. 요기요 라이트의 기본 주문중개 이용료는 9.7%이고, 가게의 주문·매출 성과에 따라 단계적으로 내려가 최저 4.7%가 적용됩니다. 적용 기준은 가게별로 안내되며, 사장님사이트의 <em>가게관리 → 기본설정</em>에서 현재 적용 중인 요율을 확인할 수 있습니다.</p><p>요기패스X처럼 요기요가 비용을 부담하는 멤버십 혜택이 적용된 주문에는 1.2%p가 더 붙습니다. 계산기의 체크박스로 반영할 수 있습니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>광고비나 가맹 로열티도 계산에 들어가나요?</summary>
+      <div class="a"><p>아니요. 사장님이 부담하는 할인·쿠폰 금액은 입력할 수 있지만, 우리가게클릭·요타임딜 같은 광고비, 가맹 로열티, 자체배달 대행료, 인건비와 임대료는 이 계산기에 포함되지 않습니다.</p><p>이 계산기는 “주문 1건의 정산 구조”만 봅니다. 광고를 쓰고 있다면 주문당 광고비를 따로 더해 판단하세요.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>계산 결과와 실제 정산서 금액이 다른 이유는?</summary>
+      <div class="a"><p>실제 정산은 주문별 할인·쿠폰 분담, 거리와 시간대별 배달비, 우대수수료 적용 여부, 프로모션, 부분 취소 등으로 달라집니다. 이 계산기는 공개된 요율표로 계산한 참고값입니다.</p><p>정확한 금액은 각 플랫폼의 정산서와 사장님 포털에서 확인하세요. 요율이나 제도가 바뀌면 이 페이지도 함께 고칩니다.</p></div>
+    </details>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       [AD SLOT 3] 본문 하단 · 반응형 (pub-2493112023638381)
+  <ins class="adsbygoogle" style="display:block"
+       data-ad-client="ca-pub-2493112023638381"
+       data-ad-slot="0000000000"
+       data-ad-format="auto"
+       data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+       ══════════════════════════════════════════════════════════════ -->
+  <div class="ad-slot" data-ad="bottom" aria-hidden="true">광고 영역 · AD SLOT 3</div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap rows">
+    <div><b>마진노트</b> — 배달앱 수수료·순수익 계산기 · 배민·쿠팡이츠·요기요 · 무료</div>
+    <div>요율 확인: 2026년 11월 16일 · 배민 입점 안내, 배민외식업광장, 쿠팡이츠 사장님 포털, 요기요 사장님사이트 공개 요율 기준</div>
+    <div>모든 요율은 부가세 별도 고지값이며, 지역·매출 구간·계약·프로모션에 따라 실제 정산액과 다를 수 있습니다. 본 계산 결과는 참고용이며 정산 금액의 근거로 사용할 수 없습니다.</div>
+    <div>입력한 금액은 브라우저 안에서만 계산되고 이 기기에만 저장되며 서버로 전송되지 않습니다. · © 2026 마진노트</div>
+  </div>
+</footer>
+
+<script src="assets/fees.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

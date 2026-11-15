@@ -1,4 +1,4 @@
-/* 환율노트 — 전세계 실시간 환율 계산기
+/* 글로벌 환율 레이더 — 전세계 실시간 환율 계산기
    핀테크/여행 톤 · 모바일 우선 반응형 · 외부 라이브러리 없음 */
 
 :root {
@@ -474,6 +474,12 @@ details.faq .a p:last-child { margin-bottom: 0; }
   .cmp-scroll { overflow: visible; }
   .cur-btn .nm { display: none; }
   .cur-btn { max-width: none; }
+}
+
+@media (max-width: 559px) {
+  .brand { font-size: 15.5px; gap: 7px; }
+  .brand small { display: none; }
+  .brand-mark { width: 26px; height: 26px; border-radius: 8px; font-size: 11.5px; }
 }
 
 @media (min-width: 560px) {
