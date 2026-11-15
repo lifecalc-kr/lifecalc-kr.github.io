@@ -166,10 +166,20 @@
 
   LC.onCopy($('copyBtn'), summary, '진짜 시급을 복사했어요. 카톡에 붙여넣기!');
   LC.onShare($('shareBtn'), function () {
-    var lines = summary().split('\n');
+    if (!last) {
+      return {
+        title: '내 진짜 시급 계산기 — 시급노트',
+        text: '월급을 회사에 묶인 모든 시간으로 나누면 내 시급은 얼마일까? 통근·점심·야근까지 넣고 계산해 봐!',
+        url: LC.shareUrl(shareParams())
+      };
+    }
+    var r = last.r, s = r.state;
     return {
-      title: '내 진짜 시급 계산기',
-      text: lines.slice(0, 4).join('\n'),
+      title: '내 진짜 시급 계산기 — 시급노트',
+      text: '내 진짜 시급은 ' + LC.won(r.realNet) + '… 너도 계산해 봐!\n'
+        + '· 월급 ' + LC.won(r.gross) + (s.mode === 'net' ? '(세후 기준 입력)' : '(세전)') + ' → 실수령 ' + LC.won(r.net) + '\n'
+        + '· 하루 구속 ' + hhmm(r.dailyMin) + ' (통근 ' + s.commute + '분 포함)\n'
+        + '· 2026 최저시급 ' + LC.won(MIN_WAGE) + '의 ' + (Math.round(r.ratio * 100) / 100) + '배',
       url: LC.shareUrl(shareParams())
     };
   });

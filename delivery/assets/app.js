@@ -581,6 +581,16 @@
       }
     });
 
+    $('#shareBtn').addEventListener('click', function () {
+      if (!window.LCShare) return;
+      var line = copyText || '배달앱 수수료 떼고 얼마 남을까? 내 가게로 계산해 봐!';
+      LCShare.share({
+        title: '배달앱 수수료·순수익 계산기 — 마진노트',
+        text: line + '\n내 가게로 계산해 봐!',
+        url: location.href.split('#')[0]
+      }, this);
+    });
+
     $('#resetBtn').addEventListener('click', function () {
       state = Object.assign({}, DEFAULTS);
       state.pgRate = platformOf(state.platform).pgDefault;

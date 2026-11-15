@@ -138,9 +138,11 @@
     });
   };
 
-  /* 공유: 모바일 네이티브 공유 → 실패하면 복사 */
+  /* 공유: 모바일 네이티브 공유 → 실패하면 복사
+     (assets/share.js 의 LCShare 가 있으면 그쪽으로 넘깁니다.) */
   LC.onShare = function (btn, getPayload) {
     if (!btn) return;
+    if (window.LCShare) { window.LCShare.bind(btn, getPayload); return; }
     btn.addEventListener('click', function () {
       var p = typeof getPayload === 'function' ? getPayload() : getPayload;
       if (navigator.share) {
@@ -154,7 +156,7 @@
           });
       } else {
         LC.copy(p.text + '\n' + (p.url || location.href)).then(function (ok) {
-          if (ok) { LC.toast('공유 문구를 복사했어요. 카톡에 붙여넣기!'); flash(btn, '복사 완료!'); }
+          if (ok) { LC.toast('공유 문구와 링크가 복사됐어요!'); flash(btn, '복사 완료!'); }
         });
       }
     });

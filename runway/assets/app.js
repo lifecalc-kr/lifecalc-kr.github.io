@@ -230,10 +230,18 @@
   LC.onCopy($('copyBtn'), summary, '생존 기간을 복사했어요. 퇴사 고민 친구에게 보내 보세요.');
   LC.onShare($('shareBtn'), function () {
     var r = last ? last.r : null;
-    if (!r) return { title: '퇴사 생존 개월수 계산기', text: '퇴사하면 몇 개월 버틸 수 있을까?', url: location.href };
+    if (!r) {
+      return {
+        title: '퇴사 생존 개월수 계산기 — 런웨이노트',
+        text: '퇴사하면 몇 개월이나 버틸 수 있을까? 내 저축·고정비로 바로 계산해 봐!',
+        url: location.href
+      };
+    }
     return {
-      title: '퇴사 생존 개월수 계산기',
-      text: '퇴사하면 ' + monthsText(r.months) + '개월 버틸 수 있습니다.\n잔고 소진 예상일 ' + RunwayCore.formatDate(r.end),
+      title: '퇴사 생존 개월수 계산기 — 런웨이노트',
+      text: '퇴사하면 ' + monthsText(r.months) + '개월 버팀… 너도 계산해 봐!\n'
+        + '· 총 가용 자금 ' + LC.won(r.funds) + ' ÷ 월 고정비 ' + LC.won(r.cost) + '\n'
+        + '· 잔고 소진 예상일 ' + RunwayCore.formatDate(r.end),
       url: LC.shareUrl({ s: r.savings, c: r.cost })
     };
   });

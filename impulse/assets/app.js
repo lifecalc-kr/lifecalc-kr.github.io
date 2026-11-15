@@ -121,10 +121,23 @@
 
   LC.onCopy($('copyBtn'), summary, '시간 환산 결과를 복사했어요!');
   LC.onShare($('shareBtn'), function () {
-    var lines = summary().split('\n');
+    if (!last) {
+      return {
+        title: '충동구매 시간 환산기 — 임펄스노트',
+        text: '이거 사려면 몇 시간 일해야 할까? 내 시급으로 바로 계산해 봐!',
+        url: LC.shareUrl(shareParams())
+      };
+    }
+    var r = last.r;
+    var t = r.h === 0 ? r.m + '분' : (r.m ? r.h + '시간 ' + r.m + '분' : r.h + '시간');
+    var lines = [
+      LC.won(r.price) + ' 벌려면 ' + t + ' 일해야 합니다… 너도 계산해 봐!',
+      '· 내 시급 ' + LC.won(r.wage) + ' · 출근 ' + (Math.round(r.days * 10) / 10) + '일치'
+    ];
+    if (r.pct != null) lines.push('· 월 실수령의 ' + (Math.round(r.pct * 10) / 10) + '%');
     return {
-      title: '충동구매 시간 환산기',
-      text: lines.slice(0, lines.length - 1).join('\n'),
+      title: '충동구매 시간 환산기 — 임펄스노트',
+      text: lines.join('\n'),
       url: LC.shareUrl(shareParams())
     };
   });

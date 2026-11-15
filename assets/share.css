@@ -1,0 +1,46 @@
+/* ═══════════════════════════════════════════════════════════════
+   공유하기 버튼 · 공유 토스트 (전 페이지 공용)
+   - .btn-share : 결과 카드·허브에서 눈에 띄는 기본 공유 버튼
+   - .on-dark   : 어두운 결과 카드 위에서 쓰는 밝은 변형
+   - .share-toast : "공유 문구와 링크가 복사됐어요!" 안내
+   ═══════════════════════════════════════════════════════════════ */
+
+.share-row { margin: 14px 0 0; max-width: 420px; }
+
+.btn-share {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%; margin: 0; padding: 14px 16px; cursor: pointer;
+  font: inherit; font-size: 15px; font-weight: 850; letter-spacing: -.015em;
+  color: #fff; text-align: center; text-decoration: none;
+  background: linear-gradient(135deg, #0f766e 0%, #0d9488 52%, #14b8a6 100%);
+  border: 0; border-radius: 13px;
+  box-shadow: 0 6px 18px rgba(15, 118, 110, .26);
+  transition: transform .14s ease, box-shadow .14s ease, filter .14s ease;
+}
+.btn-share:hover { filter: brightness(1.07); transform: translateY(-1px); box-shadow: 0 10px 24px rgba(15, 118, 110, .32); }
+.btn-share:active { transform: translateY(0); filter: brightness(.98); }
+.btn-share:focus-visible { outline: 3px solid #0f766e; outline-offset: 3px; }
+.btn-share .share-ico { font-size: 17px; line-height: 1; }
+.btn-share .share-sub { font-size: 11.5px; font-weight: 650; opacity: .84; letter-spacing: 0; }
+
+/* 어두운 결과 카드(퇴사·월급 노트 등) 위 */
+.btn-share.on-dark { background: linear-gradient(135deg, #12b886 0%, #20c997 100%); box-shadow: 0 6px 18px rgba(18, 184, 134, .3); }
+.btn-share.on-dark:focus-visible { outline-color: #8ef0c8; }
+
+@media (max-width: 420px) {
+  .btn-share { padding: 13px 12px; font-size: 14px; }
+  .btn-share .share-sub { display: none; }
+}
+
+/* 공유 안내 토스트 */
+.share-toast {
+  position: fixed; left: 50%; bottom: 22px; z-index: 9999;
+  transform: translate(-50%, 14px); max-width: min(460px, calc(100vw - 28px));
+  padding: 12px 18px; border-radius: 999px;
+  background: #14211f; color: #f2fbf9;
+  font-size: 13px; font-weight: 700; line-height: 1.45; text-align: center;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, .32);
+  opacity: 0; pointer-events: none;
+  transition: opacity .18s ease, transform .18s ease;
+}
+.share-toast.show { opacity: 1; transform: translate(-50%, 0); }

@@ -201,7 +201,7 @@
     swap: $('swapBtn'),
     outValue: $('outValue'), outCode: $('outCode'),
     rateText: $('rateText'), feeTag: $('feeTag'),
-    copyBtn: $('copyBtn'), refreshBtn: $('refreshBtn'),
+    copyBtn: $('copyBtn'), refreshBtn: $('refreshBtn'), shareBtn: $('shareBtn'),
     chips: $('amountChips'),
     presets: $('presets'), spreadInput: $('spreadInput'), modeNote: $('modeNote'),
     board: $('board'), addBtn: $('addBtn'),
@@ -576,6 +576,19 @@
       if (navigator.clipboard && navigator.clipboard.writeText) {
         navigator.clipboard.writeText(text).then(done, function () { fallbackCopy(text, done); });
       } else { fallbackCopy(text, done); }
+    });
+  }
+  if (el.shareBtn) {
+    el.shareBtn.addEventListener('click', function () {
+      if (!window.LCShare) return;
+      var out = convert(S.amount, S.base, S.target, S.mode, S.spread);
+      var line = num(S.amount, 0, 4) + ' ' + S.base + ' = ' + fmtMoney(out, S.target) + ' ' + S.target +
+        ' (기준 ' + kst(R.at) + ' KST' + (S.spread > 0 ? ', 스프레드 ' + S.spread + '%' : '') + ')';
+      LCShare.share({
+        title: '전세계 실시간 환율 계산기 — 글로벌 환율 레이더',
+        text: line + '\n166개국 통화를 한 번에, 지금 환율로 계산해 봐!',
+        url: location.href.split('#')[0]
+      }, el.shareBtn);
     });
   }
   function fallbackCopy(text, done) {

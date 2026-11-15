@@ -1004,6 +1004,63 @@
     });
   }
 
+  /* ── 공유하기 (결과 카드마다) ─────────────────── */
+  var SHARE_TITLES = {
+    salary: '월 실수령액 — 2026 퇴사 원스톱 계산기',
+    leave: '퇴직금 — 2026 퇴사 원스톱 계산기',
+    ui: '실업급여 — 2026 퇴사 원스톱 계산기',
+    health: '퇴직 후 건강보험 — 2026 퇴사 원스톱 계산기',
+    summary: '퇴사하면 받는 돈 — 2026 퇴사 원스톱 계산기'
+  };
+
+  function cardLabel(card) {
+    var labelEl = card.querySelector('.result-label');
+    if (!labelEl) return '';
+    var clone = labelEl.cloneNode(true);
+    Array.prototype.forEach.call(clone.querySelectorAll('.badge'), function (b) {
+      if (b.parentNode) b.parentNode.removeChild(b);
+    });
+    return clone.textContent.replace(/\s+/g, ' ').trim();
+  }
+
+  function sharePayload(btn) {
+    var key = btn.getAttribute('data-share') || '';
+    var card = btn.closest('.result-card, .summary-card');
+    var label = '', main = '', sub = '';
+
+    if (card) {
+      label = cardLabel(card);
+      var mainEl = card.querySelector('.result-main');
+      var subEl = card.querySelector('.result-sub');
+      main = mainEl ? mainEl.textContent.replace(/\s+/g, ' ').trim() : '';
+      sub = subEl ? subEl.textContent.replace(/\s+/g, ' ').trim() : '';
+    }
+
+    if (key === 'summary') {
+      var total = $('#sum-cash');
+      label = '퇴사하면 받는 돈(퇴직금+연차수당+실업급여, 세후)';
+      main = total ? total.textContent.trim() : '';
+      sub = '';
+    }
+
+    var lines = [(label ? label + ' ' : '') + main];
+    if (sub) lines.push('· ' + sub);
+    lines.push('너도 계산해 봐!');
+
+    var base = location.href.split('#')[0];
+    var url = (key && key !== 'summary') ? base + '#' + key : base;
+
+    return {
+      title: SHARE_TITLES[key] || document.title,
+      text: lines.join('\n'),
+      url: url
+    };
+  }
+
+  if (window.LCShare) {
+    LCShare.bindAll('[data-share]', sharePayload);
+  }
+
   /* ── 초기화 ── */
   if (!$('#ui-salary').value) $('#ui-salary').value = '5,000,000';
   if (!$('#leave-salary').value) $('#leave-salary').value = '5,000,000';

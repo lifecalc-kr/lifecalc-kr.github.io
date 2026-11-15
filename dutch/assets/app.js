@@ -250,9 +250,16 @@
   }, '정산 내역을 복사했어요. 단톡방에 붙여넣으세요!');
 
   LC.onShare($('shareBtn'), function () {
+    if (!last) {
+      return {
+        title: '눈치 없는 더치페이 정산기 — 더치노트',
+        text: '술 안 마신 사람이 손해 보지 않게, 더치페이 정산해 봐!',
+        url: location.href
+      };
+    }
     return {
-      title: '더치페이 정산',
-      text: settlementText(),
+      title: '더치페이 정산 — 더치노트',
+      text: settlementText() + '\n\n너도 계산해 봐!',
       url: LC.shareUrl(shareParams())
     };
   });

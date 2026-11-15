@@ -151,9 +151,18 @@
   LC.onCopy($('copyBtn'), summary, '루팡 손익을 복사했어요. 단톡방에 던져 보세요.');
   LC.onShare($('shareBtn'), function () {
     var r = last ? last.r : null;
+    if (!r) {
+      return {
+        title: '월급 루팡 손익 계산기 — 루팡노트',
+        text: '오늘 회사에서 슬쩍 가져간 돈은 얼마일까? 화장실·커피·유튜브 시간으로 계산해 봐!',
+        url: LC.shareUrl(shareParams())
+      };
+    }
     return {
-      title: '월급 루팡 손익 계산기',
-      text: r ? '오늘 회사에서 슬쩍 가져간 돈은 ' + LC.won(r.dayMoney) + '\n내 등급: ' + r.grade.name + ' (근무시간의 ' + (Math.round(r.pct * 10) / 10) + '%)' : '오늘 회사에서 슬쩍 가져간 돈은?',
+      title: '월급 루팡 손익 계산기 — 루팡노트',
+      text: '오늘 회사에서 슬쩍 가져간 돈은 ' + LC.won(r.dayMoney) + '… 너도 계산해 봐!\n'
+        + '· 내 등급: ' + r.grade.name + ' (근무시간의 ' + (Math.round(r.pct * 10) / 10) + '%)\n'
+        + '· 딴짓 ' + hhmm(r.minutes) + ' · 이번 달 ' + LC.won(r.monthMoney),
       url: LC.shareUrl(shareParams())
     };
   });

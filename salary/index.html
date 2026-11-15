@@ -11,7 +11,8 @@
 <meta name="theme-color" content="#0f766e">
 <link rel="canonical" href="https://lifecalc-kr.github.io/salary/">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%230f766e'/%3E%3Cpath d='M18 42V26m14 16V20m14 22V32' stroke='%23fff' stroke-width='7' stroke-linecap='round'/%3E%3C/svg%3E">
-<link rel="stylesheet" href="assets/styles.css">
+<link rel="stylesheet" href="assets/styles.css?v=20261116share">
+<link rel="stylesheet" href="../assets/share.css?v=20261116share">
 
 <!-- Open Graph / Twitter -->
 <meta property="og:url" content="https://lifecalc-kr.github.io/salary/">
@@ -277,6 +278,9 @@
                   <p class="v"><span id="res-deduction-total">0원</span> <span id="res-deduction-rate" style="color:#8ecfc4;font-weight:600">0%</span></p>
                 </div>
               </div>
+              <div class="share-row">
+                <button type="button" class="btn-share on-dark" data-share="salary"><span class="share-ico" aria-hidden="true">📤</span> 결과 공유하기</button>
+              </div>
             </div>
 
             <div class="breakdown">
@@ -442,6 +446,9 @@
                   <p class="v" id="res-leave-years">0년</p>
                 </div>
               </div>
+              <div class="share-row">
+                <button type="button" class="btn-share on-dark" data-share="leave"><span class="share-ico" aria-hidden="true">📤</span> 결과 공유하기</button>
+              </div>
             </div>
 
             <div class="breakdown">
@@ -491,6 +498,9 @@
                 <div><dt>재직 중 본인 부담</dt><dd id="sum-health-inside">0원</dd></div>
                 <div class="summary-total"><dt>퇴직금+연차수당+실업급여</dt><dd id="sum-cash">0원</dd></div>
               </dl>
+              <div class="share-row">
+                <button type="button" class="btn-share" data-share="summary"><span class="share-ico" aria-hidden="true">📤</span> 결과 공유하기</button>
+              </div>
             </div>
       </div>
 
@@ -633,6 +643,9 @@
                   <p class="v" id="res-ui-max">0원</p>
                 </div>
               </div>
+              <div class="share-row">
+                <button type="button" class="btn-share on-dark" data-share="ui"><span class="share-ico" aria-hidden="true">📤</span> 결과 공유하기</button>
+              </div>
             </div>
 
             <div class="breakdown">
@@ -760,6 +773,9 @@
                   <p class="k">36개월 차이</p>
                   <p class="v" id="res-h-diff36">0원</p>
                 </div>
+              </div>
+              <div class="share-row">
+                <button type="button" class="btn-share on-dark" data-share="health"><span class="share-ico" aria-hidden="true">📤</span> 결과 공유하기</button>
               </div>
             </div>
 
@@ -1040,6 +1056,7 @@
   </div>
 </footer>
 
-<script src="assets/app.js" defer></script>
+<script src="../assets/share.js?v=20261116share"></script>
+<script src="assets/app.js?v=20261116share" defer></script>
 </body>
 </html>

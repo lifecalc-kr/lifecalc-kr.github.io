@@ -339,6 +339,9 @@ details.adv .adv-body { padding: 2px 13px 14px; }
 .res-rows > div.total dd { font-size: 15px; color: var(--accent); }
 
 .res-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
+.res-actions--share { grid-template-columns: 1fr; gap: 9px; }
+.res-actions--share .btn-share { order: -1; }
+.res-actions--share .btn { font-size: 13px; padding: 10px 14px; }
 .btn {
   display: inline-flex; align-items: center; justify-content: center; gap: 6px;
   padding: 12px 14px; cursor: pointer;
