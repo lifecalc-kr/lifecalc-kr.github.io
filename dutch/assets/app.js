@@ -74,8 +74,8 @@
 
       row.appendChild(name);
       row.appendChild(sel);
-      row.appendChild(del);
       row.appendChild(drink);
+      row.appendChild(del);
       memberBox.appendChild(row);
     });
     $('memberCount').textContent = members.length + '명';
