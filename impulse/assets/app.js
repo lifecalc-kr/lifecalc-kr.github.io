@@ -35,6 +35,12 @@
     return r.m > 0 ? '시간 ' + r.m + '분' : '시간';
   }
 
+  function daysText(days) {
+    if (days <= 0) return '0일';
+    if (days < 0.05) return '0.1일 미만';
+    return (Math.round(days * 10) / 10) + '일';
+  }
+
   var last = null;
 
   function render() {
@@ -67,7 +73,7 @@
 
     $('impulseQuote').textContent = ImpulseCore.verdict(r);
 
-    $('rDays').innerHTML = (Math.round(r.days * 10) / 10) + '일 <small>하루 ' + r.hoursPerDay + '시간 기준</small>';
+    $('rDays').innerHTML = daysText(r.days) + ' <small>하루 ' + r.hoursPerDay + '시간 기준</small>';
     LC.text('rWage', LC.won(r.wage) + ' /시간');
     LC.text('rMin', (Math.round(r.minHours * 10) / 10) + '시간');
     LC.text('rPct', r.pct == null ? '월급 입력 시' : (Math.round(r.pct * 10) / 10) + '%');
@@ -89,7 +95,7 @@
         + '<td><b>' + LC.won(row.price) + '</b></td>'
         + '<td>' + row.label + '</td>'
         + '<td>' + t + '</td>'
-        + '<td>' + (Math.round(row.days * 10) / 10) + '일</td>'
+        + '<td>' + daysText(row.days) + '</td>'
         + '</tr>';
     });
     $('tableBody').innerHTML = html;
