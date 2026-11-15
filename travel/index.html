@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>해외 여행물가 환산기 | 내 예산이면 그 나라에서 뭘 몇 개? — 트래블노트</title>
+<meta name="description" content="베트남·일본·태국·필리핀·대만·홍콩·싱가포르·미국(괌)·서유럽 9개 인기 여행지. 여행 기간과 예산을 넣으면 실시간 환율로 쌀국수 몇 그릇, 그랩 몇 번, 타이마사지 몇 번을 즐길 수 있는지 체감 물가로 환산합니다. 일정 시뮬레이터·단가 직접 수정 지원. 무료.">
+<meta name="keywords" content="여행 물가 계산기, 해외 물가, 베트남 물가, 일본 물가, 태국 물가, 필리핀 물가, 대만 물가, 홍콩 물가, 싱가포르 물가, 괌 물가, 유럽 물가, 여행 예산 계산기, 환율 계산기, 여행 경비">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="콩구리">
+<meta name="theme-color" content="#0ea5a3">
+<meta name="format-detection" content="telephone=no">
+<link rel="canonical" href="https://lifecalc-kr.github.io/travel/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="생활금융 계산기 연구소">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="해외 여행물가 환산기 — 내 예산이면 그 나라에서 뭘 몇 개?">
+<meta property="og:description" content="예산 50만원이면 베트남에서 쌀국수 90그릇+마사지 33회. 9개 인기 여행지 체감 물가를 실시간 환율로 계산합니다.">
+<meta property="og:url" content="https://lifecalc-kr.github.io/travel/">
+<meta property="og:image" content="https://lifecalc-kr.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="해외 여행물가 환산기 — 트래블노트">
+<meta name="twitter:description" content="내 예산이면 그 나라에서 뭘 몇 개 즐길 수 있을까? 9개국 체감 물가 환산 · 일정 시뮬레이터">
+<meta name="twitter:image" content="https://lifecalc-kr.github.io/og-image.png">
+
+<link rel="preconnect" href="https://open.er-api.com" crossorigin>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%230ea5a3'/%3E%3Ctext x='50' y='70' font-size='52' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'%3E%E2%9C%88%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/calc.css?v=20261116share">
+<link rel="stylesheet" href="../assets/share.css?v=20261116share">
+<style>
+  :root { --accent:#0ea5a3; --accent-2:#0b7d7b; --accent-soft:#e2f7f6; --accent-line:#b9e8e6; }
+  @media (prefers-color-scheme: dark) {
+    :root { --accent:#2dd4bf; --accent-2:#5eead4; --accent-soft:#0c2f2d; --accent-line:#1d4a48; }
+  }
+  /* 나라 선택 */
+  .ctry-grid { display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; }
+  .ctry {
+    padding:9px 14px; border-radius:999px; cursor:pointer; font:inherit; font-size:14px; font-weight:700;
+    color:var(--muted-2); background:var(--card); border:1.5px solid var(--line); white-space:nowrap;
+    transition:transform .12s ease, border-color .12s ease;
+  }
+  .ctry:hover { border-color:var(--accent); }
+  .ctry[aria-pressed="true"] { background:var(--accent); border-color:var(--accent); color:#fff; }
+  /* 항공·숙박 차감 */
+  .deduct-fields { margin-top:10px; display:grid; gap:8px; grid-template-columns:1fr 1fr; }
+  .deduct-fields[hidden] { display:none; }
+  /* 체감 항목 리스트 */
+  .item-list { margin-top:14px; border-top:1px solid var(--line); }
+  .item { display:flex; align-items:center; gap:12px; padding:11px 2px; border-bottom:1px solid var(--line-2); }
+  .item-emoji { font-size:24px; flex:none; }
+  .item-main { flex:1; min-width:0; display:flex; flex-direction:column; gap:2px; }
+  .item-name { font-weight:800; font-size:14.5px; color:var(--ink); }
+  .item-name .tag-taxi { font-style:normal; font-size:10.5px; font-weight:800; color:var(--accent); background:var(--accent-soft); border-radius:999px; padding:1px 7px; margin-left:4px; }
+  .item-price { font-size:13px; color:var(--muted-2); display:flex; flex-wrap:wrap; align-items:baseline; gap:6px; }
+  .price-btn { font:inherit; font-weight:800; color:var(--accent); background:none; border:none; border-bottom:1px dashed var(--accent); cursor:pointer; padding:0; }
+  .price-btn:hover { color:var(--accent-2); }
+  .price-input { width:110px; font:inherit; font-size:13px; padding:2px 6px; border:1.5px solid var(--accent); border-radius:8px; background:var(--card); color:var(--ink); }
+  .item-range { display:block; width:100%; font-size:11px; color:var(--muted); opacity:.85; }
+  .item-side { flex:none; display:flex; flex-direction:column; align-items:flex-end; gap:5px; }
+  .item-count { font-size:19px; font-weight:850; color:var(--accent); font-variant-numeric:tabular-nums; }
+  .item-count small { font-size:11px; font-weight:700; color:var(--muted-2); margin-left:2px; }
+  .item-btns { display:flex; gap:6px; }
+  .qty-btn {
+    width:30px; height:30px; border-radius:50%; border:1.5px solid var(--line); background:var(--card);
+    color:var(--ink); font-size:17px; font-weight:800; cursor:pointer; line-height:1; padding:0;
+  }
+  .qty-btn:hover { border-color:var(--accent); color:var(--accent); }
+  /* 하루 예산 진행 바 */
+  .bar { margin-top:16px; }
+  .bar-track { height:14px; border-radius:999px; background:var(--accent-soft); overflow:hidden; }
+  .bar-fill { height:100%; width:0%; border-radius:999px; background:linear-gradient(90deg, var(--accent), var(--accent-2)); transition:width .3s ease; }
+  .bar-label { display:flex; justify-content:space-between; gap:10px; font-size:12.5px; color:var(--muted-2); margin-top:6px; flex-wrap:wrap; }
+  /* 장바구니 */
+  .cart-list { margin-top:8px; }
+  .cart-line { display:flex; justify-content:space-between; gap:10px; padding:7px 0; border-bottom:1px dashed var(--line-2); font-size:13.5px; }
+  .cart-line .cart-nm { color:var(--ink); font-weight:700; }
+  .cart-line .cart-nm small { color:var(--muted-2); font-weight:600; margin-left:4px; }
+  .cart-line .cart-am { font-weight:850; font-variant-numeric:tabular-nums; white-space:nowrap; }
+  .cart-empty { font-size:13px; color:var(--muted-2); margin:8px 0; word-break:keep-all; }
+</style>
+
+<!-- Google AdSense (pub-2493112023638381) — 승인 후 주석 해제
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2493112023638381" crossorigin="anonymous"></script>
+-->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "트래블노트 — 해외 여행물가 환산기",
+      "url": "https://lifecalc-kr.github.io/travel/",
+      "applicationCategory": "TravelApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "ko-KR",
+      "description": "여행 기간과 예산을 입력하면 실시간 환율로 베트남·일본·태국·필리핀·대만·홍콩·싱가포르·미국(괌)·서유럽의 체감 물가(쌀국수 몇 그릇, 그랩 몇 번 등)를 계산하는 무료 웹 앱.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+      "featureList": [
+        "한국인 인기 해외여행지 9개국 체감 물가 환산",
+        "실시간 환율(open.er-api.com) 자동 적용 · 오프라인 폴백",
+        "항목별 '몇 그릇·몇 번' 체감 수량 계산",
+        "항목 단가 직접 수정",
+        "일정 시뮬레이터(장바구니)로 하루 예산 안에서 조합",
+        "결과 공유 문구 자동 생성"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "물가는 어떤 기준인가요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "각 나라 대표 관광지(호치민·다낭, 도쿄·오사카, 방콕, 세부·마닐라, 타이베이, 홍콩, 싱가포르, 괌, 파리·로마)에서 한국인 여행객이 자주 쓰는 항목의 2025~2026년 실제 시세를 조사해 평균값으로 반영했습니다. 상점·지역·시즌에 따라 다를 수 있고, 항목 가격을 눌러 직접 수정할 수도 있습니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "환율은 언제, 어떻게 반영되나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "exchangerate-api.com(open.er-api.com)의 실시간 기준 환율을 자동으로 불러와 1원당 현지 통화 가격으로 환산합니다. 인터넷이 끊기면 브라우저에 저장된 마지막 환율, 그다음으로 사이트에 내장된 기준 환율을 사용하고 상단 배지에 어떤 환율인지 표시합니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "예산에 항공권과 숙박비도 포함되나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "기본값은 항공·숙박을 제외한 현지 체류비 기준입니다. '항공·숙박비 차감'을 켜고 항공비와 숙박비를 입력하면, 총 예산에서 두 항목을 뺀 나머지로 계산합니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "일정 시뮬레이터는 어떻게 쓰나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "항목별 + 버튼을 눌러 쌀국수 2그릇 + 그랩 3번 + 마사지 1회처럼 하루에 하고 싶은 일을 담으면, 장바구니 합계가 하루 예산과 얼마나 차이 나는지 진행 바로 바로 보여줍니다. 담은 내용은 브라우저에 저장되어 다음 방문에도 유지됩니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "왜 택시와 대중교통이 꼭 들어 있나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "여행 예산에서 교통비는 식비 다음으로 큰 비중을 차지합니다. 그래서 나라별로 택시·그랩 요금과 지하철·버스 요금을 반드시 함께 넣어, 이동 방식 선택이 예산에 주는 차이를 바로 비교할 수 있게 했습니다." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="../">
+      <span class="brand-mark" aria-hidden="true">✈️</span>
+      트래블노트 <span class="brand-sub">TRAVEL NOTE</span>
+    </a>
+    <div class="head-right">
+      <span class="status-pill" id="statusPill" role="status" aria-live="polite">
+        <span class="dot" aria-hidden="true"></span>
+        <span id="statusText">환율 불러오는 중…</span>
+      </span>
+      <a class="hub-link" href="../">계산기 9종 <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <span class="hero-kicker">9호 · 해외 여행물가 환산기</span>
+    <h1>내 예산이면 <span class="hl">그 나라에서</span> 뭘 몇 개?</h1>
+    <p>나라와 기간, 예산만 넣으면 <strong>실시간 환율</strong>로 쌀국수 몇 그릇, 그랩 몇 번, 마사지 몇 번을 즐길 수 있는지 체감 물가로 보여 드립니다. 베트남·일본·태국·필리핀·대만·홍콩·싱가포르·미국(괌)·서유럽.</p>
+    <div class="hstats">
+      <span class="hstat"><b>9개국</b> 인기 여행지</span>
+      <span class="hstat"><b>실시간</b> 환율 자동 환산</span>
+      <span class="hstat"><b>일정 시뮬레이터</b> 장바구니</span>
+    </div>
+  </section>
+
+  <!-- [AD SLOT 1] 상단
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2493112023638381" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  -->
+  <div class="ad-slot" data-ad="top" aria-hidden="true">광고 영역 · AD SLOT 1</div>
+
+  <section class="card calc" aria-labelledby="calcTitle">
+    <div class="calc-head">
+      <h2 id="calcTitle">어디로 떠나시나요?</h2>
+      <p>나라 · 기간 · 예산만 고르면 바로 계산됩니다. 입력값은 이 브라우저에만 저장됩니다.</p>
+    </div>
+
+    <div class="calc-grid">
+      <div class="inputs">
+
+        <div class="field">
+          <span class="field-label">여행지</span>
+          <div class="ctry-grid" id="countryGrid" role="group" aria-label="여행지 선택"></div>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="nights">여행 기간</label>
+          <div class="money">
+            <input id="nights" type="number" min="0" max="90" step="1" value="3" inputmode="numeric" aria-describedby="nightsNote">
+            <span class="unit">박</span>
+          </div>
+          <p class="hint" id="nightsNote">몇 박인지 넣으면 일수는 박+1로 계산합니다.</p>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="budget">총 여행 예산</label>
+          <div class="money">
+            <input id="budget" type="text" inputmode="numeric" value="500,000" aria-describedby="budgetNote">
+            <span class="unit">원</span>
+          </div>
+          <div class="chips" id="budgetChips">
+            <button class="chip" type="button" data-value="300000">30만</button>
+            <button class="chip" type="button" data-value="500000">50만</button>
+            <button class="chip" type="button" data-value="1000000">100만</button>
+            <button class="chip" type="button" data-value="2000000">200만</button>
+          </div>
+          <p class="hint" id="budgetNote">기본값은 항공·숙박을 제외한 현지 체류비 기준입니다.</p>
+          <label class="check" style="margin-top:8px">
+            <input type="checkbox" id="deduct">
+            총 예산에서 항공·숙박비를 빼고 계산
+          </label>
+          <div class="deduct-fields" id="deductFields" hidden>
+            <div class="money">
+              <input id="flight" type="text" inputmode="numeric" value="0" aria-label="항공비(원)">
+              <span class="unit">항공</span>
+            </div>
+            <div class="money">
+              <input id="hotel" type="text" inputmode="numeric" value="0" aria-label="숙박비(원)">
+              <span class="unit">숙박</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="result">
+        <div class="res-card">
+          <p class="res-label" id="resCountry">국가</p>
+          <p class="res-sub" id="resCity">—</p>
+          <p class="res-value" style="font-size:26px"><span id="resDay">0</span><span class="unit">원 / 하루</span></p>
+          <p class="res-sub" id="resDayLocal">—</p>
+          <p class="res-badge" id="rateLine">환율을 불러오는 중…</p>
+
+          <dl class="res-rows">
+            <div><dt>기간</dt><dd id="resDays">—</dd></div>
+            <div class="total"><dt>체류 예산(총)</dt><dd><span id="resTotal">—</span><br><span id="resTotalLocal" style="font-size:12px;color:var(--muted-2)">—</span></dd></div>
+          </dl>
+
+          <div class="bar">
+            <div class="bar-track"><div class="bar-fill" id="barFill"></div></div>
+            <div class="bar-label">
+              <span id="barLabel">아래 항목을 눌러 담아 보세요</span>
+              <span id="barLeft"></span>
+            </div>
+          </div>
+
+          <div class="res-actions res-actions--share">
+            <button type="button" class="btn-share" id="shareBtn" aria-label="계산 결과를 카카오톡·메시지로 공유하기">
+              <span class="share-ico" aria-hidden="true">📤</span> 결과 공유하기
+              <span class="share-sub">카톡·메시지</span>
+            </button>
+          </div>
+          <p class="res-note">대표 관광지 평균 기준이며 상점·지역에 따라 다를 수 있어요. 항목의 가격을 누르면 직접 수정할 수 있습니다.</p>
+        </div>
+      </aside>
+    </div>
+
+    <div class="item-list" id="itemList" aria-live="polite"></div>
+
+    <div class="card" style="margin-top:18px; box-shadow:none; border-style:dashed">
+      <h3 style="margin:0 0 4px; font-size:15.5px">🧺 내 일정 시뮬레이터</h3>
+      <p class="hint" style="margin:0">항목의 + 버튼으로 하고 싶은 일을 담으면 하루 예산과 바로 비교됩니다.</p>
+      <div class="cart-list" id="cartList"></div>
+      <div style="display:flex; align-items:baseline; justify-content:space-between; gap:10px; margin-top:10px; flex-wrap:wrap">
+        <span style="font-weight:800; color:var(--ink)">담은 합계</span>
+        <span style="text-align:right">
+          <b id="cartTotal" style="font-size:20px; color:var(--accent)">—</b>
+          <span id="cartTotalKRW" style="display:block; font-size:12px; color:var(--muted-2)">—</span>
+        </span>
+      </div>
+      <button type="button" class="btn" id="cartClear" hidden style="margin-top:10px">비우기</button>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="howTitle">
+    <div class="sec-head">
+      <div>
+        <h2 id="howTitle">이 나라에서는 뭘 해야 유리할까</h2>
+        <p>같은 예산이라도 나라마다 살 수 있는 게 다릅니다. 위 나라 버튼을 바꿔 가며 비교해 보세요.</p>
+      </div>
+    </div>
+    <div class="card" style="padding:8px 4px 4px">
+      <div class="tbl-scroll">
+        <table class="tbl">
+          <caption>나라별 체감 물가 비교 (1만원 기준)</caption>
+          <thead>
+            <tr><th scope="col">여행지</th><th scope="col">1만원 = 현지 통화</th><th scope="col">이것 정도 가능</th></tr>
+          </thead>
+          <tbody id="compareBody"></tbody>
+        </table>
+      </div>
+      <p class="hint" style="padding:0 12px 8px">각 나라 항목 중 가장 저렴한 것 기준으로, 1만원으로 몇 개를 즐길 수 있는지 나타낸 참고치입니다. 실시간 환율 기준.</p>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="guideTitle">
+    <div class="card guide">
+      <h2 id="guideTitle">트래블노트, 이렇게 쓰세요</h2>
+      <ol>
+        <li><strong>여행지를 고릅니다.</strong> 한국인이 가장 많이 찾는 9개 여행지를 준비했습니다. 각 나라 대표 먹거리·교통·체험의 실제 시세가 들어 있습니다.</li>
+        <li><strong>기간과 예산을 넣습니다.</strong> 몇 박으로 가는지, 항공·숙박 제외 현지 체류비가 얼마인지 넣으면 하루 예산이 나옵니다.</li>
+        <li><strong>체감 수량을 봅니다.</strong> "총 예산이면 쌀국수 몇 그릇, 그랩 몇 번, 마사지 몇 번"이 항목별로 계산됩니다. 가격을 눌러 실제 예약한 가격으로 바꿔도 됩니다.</li>
+        <li><strong>일정 시뮬레이터로 하루를 짜 봅니다.</strong> 먹고 싶은 것과 타고 싶은 것을 +로 담아 하루 예산 안에 들어오는지 확인하세요.</li>
+        <li><strong>결과를 공유합니다.</strong> 공유 버튼을 누르면 "내 예산 50만 원이면 베트남에서 쌀국수 90그릇+마사지 33회!"처럼 나라·예산·체감 수치가 담긴 문구가 만들어집니다.</li>
+      </ol>
+
+      <h3>물가 수치의 출처와 한계</h3>
+      <p>항목 가격은 2025~2026년 여행자 후기·물가 정리 자료와 현지 공식 요금표(BTS·MRT·택시 기본요금, 졸리비·콩카페 공식 메뉴가격 등)를 교차 확인해 대표값으로 정한 것입니다. 베트남 반미 22,000~40,000동, 태국 타이마사지 250~600바트처럼 <strong>같은 나라 안에서도 지역·가게·시간대에 따라 2~3배 차이</strong>가 날 수 있습니다. 그래서 모든 항목은 조사 범위를 함께 표시하고, 가격을 직접 고칠 수 있게 했습니다.</p>
+
+      <h3>환율과 실제 결제 금액의 차이</h3>
+      <p>이 계산기는 시장 기준 환율(mid-market rate)을 사용합니다. 실제 환전·카드 결제에는 수수료(스프레드)와 카드사 해외이용수수료 0.2~0.6%가 더해지므로, 실제로는 여기 나온 것보다 1~2% 정도 적게 바꿔진다고 보면 됩니다. 수수료까지 정확히 보려면 <a href="../fx/">글로벌 환율 레이더</a>를 함께 사용하세요.</p>
+
+      <h3>나라별 물가 감각</h3>
+      <ul>
+        <li><strong>베트남·태국·필리핀</strong> — 한 끼 3~8천원, 마사지 1시간에 만 원 안팎. 예산 50만 원이면 하루 12만 원씩 써도 4일을 여유 있게 넘깁니다.</li>
+        <li><strong>대만·홍콩·일본</strong> — 한 끼 1만~1.5만 원대. 특히 일본은 물가 인상이 이어져 편의점 도시락 600엔, 지하철 기본요금 180엔 수준입니다.</li>
+        <li><strong>싱가포르</strong> — 호커센터만 쓰면 한 끼 5~7천원으로 저렴하지만, 택시·레스토랑은 유럽급입니다.</li>
+        <li><strong>미국(괌)·서유럽</strong> — 식사 한 끼 2만 원 이상, 팁 문화(미국 15~20%)까지 더해져 같은 예산이면 체감이 3~5배 납니다.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="faqTitle">
+    <div class="sec-head"><div><h2 id="faqTitle">자주 묻는 질문</h2></div></div>
+
+    <details class="faq" open>
+      <summary>물가는 어떤 기준인가요?</summary>
+      <div class="a"><p>각 나라 대표 관광지에서 한국인 여행객이 자주 쓰는 항목의 2025~2026년 실제 시세를 조사해 평균값으로 반영했습니다. 상점·지역·시즌에 따라 다를 수 있고, 항목의 가격을 눌러 직접 수정할 수도 있습니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>환율은 언제, 어떻게 반영되나요?</summary>
+      <div class="a"><p>exchangerate-api.com(open.er-api.com)의 실시간 기준 환율을 자동으로 불러와 환산합니다. 인터넷이 끊기면 브라우저에 저장된 마지막 환율, 그다음으로 사이트에 내장된 기준 환율을 사용하고 상단 배지에 어떤 환율인지 표시합니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>예산에 항공권과 숙박비도 포함되나요?</summary>
+      <div class="a"><p>기본값은 항공·숙박을 제외한 현지 체류비 기준입니다. '항공·숙박비 차감'을 켜고 항공비와 숙박비를 입력하면, 총 예산에서 두 항목을 뺀 나머지로 계산합니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>일정 시뮬레이터는 어떻게 쓰나요?</summary>
+      <div class="a"><p>항목별 + 버튼을 눌러 "쌀국수 2그릇 + 그랩 3번 + 마사지 1회"처럼 하루에 하고 싶은 일을 담으면, 장바구니 합계가 하루 예산과 얼마나 차이 나는지 진행 바로 바로 보여줍니다. 담은 내용은 브라우저에만 저장됩니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>왜 택시와 대중교통이 꼭 들어 있나요?</summary>
+      <div class="a"><p>여행 예산에서 교통비는 식비 다음으로 큰 비중을 차지합니다. 그래서 나라별로 택시·그랩 요금과 지하철·버스 요금을 반드시 함께 넣어, 이동 방식 선택이 예산에 주는 차이를 바로 비교할 수 있게 했습니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>입력한 예산이 서버로 전송되나요?</summary>
+      <div class="a"><p>아니요. 예산·기간·장바구니 내용은 브라우저 안에서만 계산되고 저장됩니다. 환율 조회 요청에도 개인 정보는 포함되지 않습니다.</p></div>
+    </details>
+  </section>
+
+  <section class="sec">
+    <div class="card guide">
+      <h3 style="margin-top:0">함께 쓰면 좋은 계산기</h3>
+      <p>환전할 때 수수료까지 따져보려면 <a href="../fx/">글로벌 환율 레이더</a>. 여행 준비하며 회식·모임 정산은 <a href="../dutch/">더치노트</a>, 월급에서 얼마를 모을지는 <a href="../real-wage/">진짜 시급 계산기</a>로 확인해 보세요.</p>
+    </div>
+  </section>
+
+  <!-- [AD SLOT 2] 중간 -->
+  <div class="ad-slot" data-ad="mid" aria-hidden="true">광고 영역 · AD SLOT 2</div>
+
+  <section class="sec" aria-labelledby="legendTitle">
+    <div class="card guide">
+      <h2 id="legendTitle">나라별 항목 가격 근거</h2>
+      <p>각 나라 항목에 표시된 조사 범위의 주요 출처입니다. 가격은 계속 움직이므로 출발 전 최신 글·공식 요금표를 한 번 더 확인하세요.</p>
+      <ul>
+        <li><strong>베트남</strong> — 호치민 로컬 쌀국수 40,000~70,000동(2025년 5,000~10,000동 인상 반영), 반미 22,000~40,000동, GrabCar 최초 2km 25,000동·이후 km당 9,000동, 메트로 1호선 6,000~20,000동, 콩카페 코코넛 스무디 55,000~69,000동.</li>
+        <li><strong>일본</strong> — 회전초밥 1접시 110~300엔, 라멘 전국 평균 약 716엔(도쿄 600~1,200엔), 편의점 도시락 500~700엔·오니기리 130~230엔, 지하철 기본 170~250엔, 택시 기본 500~600엔, 가챠 200~500엔.</li>
+        <li><strong>태국</strong> — 팟타이 60~200바트, 타이마사지 60분 250~600바트, 툭툭 흥정 50~300바트, 그랩 기본 45바트·5km 100~150바트, BTS 17~47바트·MRT 15~40바트.</li>
+        <li><strong>필리핀</strong> — 졸리비 치킨 세트 180~250페소, 망고 쉐이크 120~250페소, 지프니·LRT 기본 13~15페소, 그랩 기본 50페소·택시 5km 약 150페소, 트라이시클 50~150페소, 호핑투어 2,000~3,500페소.</li>
+        <li><strong>대만</strong> — 우육면 120~250위안, 망고빙수 약 150~280위안, 버블티 35~80위안, MRT 기본 20위안·버스 15위안, 택시 기본 약 100위안, 타이베이101 전망대 600위안.</li>
+        <li><strong>홍콩·마카오</strong> — 딤섬 1접시 28~50홍콩달러, 에그타르트 10~12홍콩달러, MTR 4.5~13홍콩달러, 트램 균일 3.3홍콩달러, 스타페리 4~6.5홍콩달러, 도시택시 기본(2km) 29홍콩달러.</li>
+        <li><strong>싱가포르</strong> — 하이난 치킨라이스 3.5~7달러, 락사 4~7달러, 카야토스트 세트 5.6달러, MRT 0.95~2.21달러·버스 0.88~2.10달러, 택시 기본 4.4~5.2달러, 그랩 도심 8~15달러.</li>
+        <li><strong>미국·괌</strong> — 빅맥 세트 약 10~13달러, 캐주얼 점심 15~30달러, 택시 기본 2.4달러·단거리도 10달러 이상, 레드 트롤리 1회 7달러·1일권 10~15달러, 레스토랑 팁 15~20%.</li>
+        <li><strong>서유럽</strong> — 파리 메트로·RER 1회 2.50유로, 로마 1회권 1.50유로, 피자 알 탈리오 3~6유로, 캐주얼 파스타 8~18유로, 에스프레소 1~3유로, 택시 기본 로마 4.5유로·파리 4.1유로(최소 8유로), 주요 박물관 13~22유로.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- [AD SLOT 3] 하단 -->
+  <div class="ad-slot" data-ad="bottom" aria-hidden="true">광고 영역 · AD SLOT 3</div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap rows">
+    <nav aria-label="사이트 메뉴">
+      <a href="../">전체 계산기</a>
+      <a href="../salary/">퇴사·월급</a>
+      <a href="../fx/">환율</a>
+      <a href="../delivery/">배달 수수료</a>
+      <a href="../real-wage/">진짜 시급</a>
+      <a href="../impulse/">충동구매</a>
+      <a href="../runway/">퇴사 생존</a>
+      <a href="../lupin/">루팡</a>
+      <a href="../dutch/">더치페이</a>
+    </nav>
+    <div><b>트래블노트</b> — 해외 여행물가 환산기 · 생활금융 계산기 연구소 9호 · 무료</div>
+    <div>물가는 각 나라 대표 관광지 평균 기준이며 상점·지역·시즌에 따라 다를 수 있습니다. 환율 출처: <a href="https://www.exchangerate-api.com" target="_blank" rel="noopener nofollow">exchangerate-api.com</a> (실시간 기준 환율) · 계산 결과는 참고용입니다.</div>
+    <div>입력한 예산과 장바구니는 브라우저 안에서만 계산·저장되며 서버로 전송되지 않습니다. · © 2026 콩구리</div>
+  </div>
+</footer>
+
+<script src="../assets/share.js?v=20261116share"></script>
+<script src="../assets/calc.js?v=20261116share"></script>
+<script src="assets/core.js?v=20261116share"></script>
+<script src="assets/app.js?v=20261116share"></script>
+</body>
+</html>
