@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>눈치 없는 더치페이 계산기 | 술 안 마신 사람·늦게 온 사람 공정 정산 — 더치노트</title>
+<meta name="description" content="술 마신 사람, 안 마신 사람, 늦게 온 사람, 먼저 간 사람, 1차만·2차만 참석까지 반영해 인당 정산 금액을 계산합니다. 카톡 복사용 정산 내역 버튼으로 단톡방에 바로 붙여넣으세요. 무료.">
+<meta name="keywords" content="더치페이 계산기, 술값 계산, N빵 계산기, 회식 정산, 술 안 마신 사람, 늦게 온 사람, 1차 2차 정산, 카톡 정산, 모임 비용 나누기">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="더치노트">
+<meta name="theme-color" content="#0f9d76">
+<meta name="format-detection" content="telephone=no">
+<link rel="canonical" href="https://lifecalc-kr.github.io/dutch/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="생활금융 계산기 연구소">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="눈치 없는 더치페이 계산기 — 공정하게 나누기">
+<meta property="og:description" content="술 안 마신 사람, 늦게 온 사람, 1차만 참석한 사람까지 반영한 정산 금액. 카톡 복사 버튼 포함.">
+<meta property="og:url" content="https://lifecalc-kr.github.io/dutch/">
+<meta property="og:image" content="https://lifecalc-kr.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="눈치 없는 더치페이 계산기 — 더치노트">
+<meta name="twitter:description" content="술값은 술 마신 사람끼리, 나머지는 참석 비율대로. 카톡 복사까지.">
+<meta name="twitter:image" content="https://lifecalc-kr.github.io/og-image.png">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%230f9d76'/%3E%3Ctext x='50' y='72' font-size='50' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'%3E%EB%8D%94%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/calc.css">
+<style>
+  :root { --accent: #0f9d76; --accent-2: #0b7d5e; --accent-soft: #e4f7f0; --accent-line: #bde8da; }
+  @media (prefers-color-scheme: dark) {
+    :root { --accent: #34d399; --accent-2: #6ee7b7; --accent-soft: #0f2f26; --accent-line: #1d4a3d; }
+  }
+  input[type="range"] { width: 100%; height: 28px; accent-color: var(--accent); cursor: pointer; }
+  .range-row { display: flex; align-items: center; gap: 10px; }
+  .range-row output { font-weight: 850; font-variant-numeric: tabular-nums; color: var(--accent); font-size: 15px; min-width: 3.2em; text-align: right; }
+  .pay-list { margin: 14px 0 0; padding: 0; border-top: 1px solid var(--line); }
+  .pay-list > div { display: flex; align-items: baseline; justify-content: space-between; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--line-2); font-size: 14px; }
+  .pay-list .nm { font-weight: 800; color: var(--ink); }
+  .pay-list .nm small { font-weight: 600; color: var(--muted-2); font-size: 11px; margin-left: 5px; }
+  .pay-list .am { font-weight: 850; font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .pay-list .am.hi { color: var(--warm); }
+  .pay-list .am.lo { color: var(--green); }
+</style>
+
+<!-- Google AdSense (pub-2493112023638381) — 승인 후 주석 해제
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2493112023638381" crossorigin="anonymous"></script>
+-->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "더치노트 — 눈치 없는 더치페이 계산기",
+      "url": "https://lifecalc-kr.github.io/dutch/",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "ko-KR",
+      "description": "술을 마신 사람과 안 마신 사람, 늦게 온 사람과 먼저 간 사람, 1차·2차 참석 여부를 반영해 모임 비용을 공정하게 나누는 무료 정산 계산기.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+      "featureList": [
+        "총액을 음식값과 주류값으로 분리해 각각 나눔",
+        "술 마신 사람만 주류값 부담",
+        "늦게 온·먼저 간·1차만·2차만 참석 가중치 반영",
+        "1,000원 단위 반올림과 합계 일치 보정",
+        "카톡 복사용 정산 내역 생성"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "왜 술값과 음식값을 나눠 계산하나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "같은 자리에서 같은 안주를 먹어도 술을 마신 사람과 안 마신 사람이 쓴 돈은 다릅니다. 총액을 그대로 N빵하면 술을 안 마신 사람이 남의 술값을 내게 됩니다. 그래서 총액을 주류 비중만큼 떼어 술 마신 사람끼리 나누고, 나머지는 참석한 사람이 참석 비율대로 나누는 방식이 가장 납득이 갑니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "주류 비중은 몇 %로 두면 되나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "술값이 전체 결제액에서 차지하는 비율입니다. 영수증에 주류 항목이 있으면 그 금액을 총액으로 나눠 넣으세요. 보통 회식에서는 30~45% 정도이고, 술을 많이 마신 자리라면 50% 이상입니다. 정확하지 않아도 괜찮습니다. 비중을 0%로 두면 단순 N빵과 같아집니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "1차만 참석한 사람은 어떻게 계산되나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "참석 시간이 짧은 만큼 소비한 몫도 작다고 보고 가중치를 낮춥니다. 기본값은 전체 참석 1.0, 늦게 도착 0.8, 먼저 귀가 0.7, 1차만 참석 0.6, 2차만 참석 0.4, 잠깐 들름 0.25입니다. 음식값은 이 가중치 비율로 나누고, 술값은 술을 마신 사람의 가중치 비율로 나눕니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "반올림은 어떻게 처리하나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "1,000원·100원·1원 단위 중에서 고를 수 있습니다. 각자 금액을 반올림하면 합계가 총액과 몇백원 어긋날 수 있어서, 차액은 가장 많이 내는 사람의 금액에 더해 합계를 정확히 맞춥니다. 계좌이체할 때 1,000원 단위가 편합니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "술을 아무도 안 마셨다면?",
+          "acceptedAnswer": { "@type": "Answer", "text": "주류 비중을 0%로 두거나, 고급 설정에서 '주류값은 술 마신 사람끼리'를 끄면 됩니다. 술 마신 사람이 없으면 주류 몫은 자동으로 전체 참석자에게 참석 비율대로 분배됩니다." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="../">
+      <span class="brand-mark" aria-hidden="true">더</span>
+      더치노트 <span class="brand-sub">DUTCH NOTE</span>
+    </a>
+    <div class="head-right">
+      <span class="status-pill"><span class="dot" aria-hidden="true"></span>카톡 복사 지원</span>
+      <a class="hub-link" href="../">계산기 8종 <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <span class="hero-kicker">8호 · 단톡방 필수</span>
+    <h1>눈치 보지 말고, <span class="hl">계산대로</span> 나누세요</h1>
+    <p>술 안 마신 사람, 늦게 온 사람, 1차만 참석한 사람. 말로 설명하기 어려운 그 차이를 숫자로 정리해 <strong>카톡에 붙여넣을 수 있게</strong> 만들어 드립니다.</p>
+    <div class="hstats">
+      <span class="hstat"><b>음식값</b> 참석 비율대로</span>
+      <span class="hstat"><b>주류값</b> 마신 사람끼리</span>
+      <span class="hstat"><b>1,000원</b> 단위 반올림</span>
+    </div>
+  </section>
+
+  <!-- [AD SLOT 1] 상단
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2493112023638381" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  -->
+  <div class="ad-slot" data-ad="top" aria-hidden="true">광고 영역 · AD SLOT 1</div>
+
+  <section class="card calc" aria-labelledby="calcTitle">
+    <div class="calc-head">
+      <h2 id="calcTitle">이번 모임, 각자 얼마?</h2>
+      <p>인원과 조건을 넣으면 바로 계산됩니다. 입력값은 이 브라우저에만 저장됩니다.</p>
+    </div>
+
+    <div class="calc-grid">
+      <div class="inputs">
+
+        <div class="field">
+          <label class="field-label" for="total">총 결제 금액</label>
+          <div class="money">
+            <input id="total" type="text" inputmode="numeric" value="180,000" aria-describedby="totalNote">
+            <span class="unit">원</span>
+          </div>
+          <div class="chips" id="totalChips">
+            <button class="chip" type="button" data-value="50000">5만</button>
+            <button class="chip" type="button" data-value="100000">10만</button>
+            <button class="chip" type="button" data-value="180000">18만</button>
+            <button class="chip" type="button" data-value="300000">30만</button>
+            <button class="chip" type="button" data-value="500000">50만</button>
+          </div>
+          <p class="hint" id="totalNote">1차·2차를 합친 전체 결제 금액을 넣으세요.</p>
+        </div>
+
+        <div class="field">
+          <label class="field-label" for="alcShare">주류 비중 <span>술값이 차지하는 비율</span></label>
+          <div class="range-row">
+            <input type="range" id="alcShare" min="0" max="70" step="5" value="35" aria-describedby="alcNote">
+            <output id="alcOut" for="alcShare">35%</output>
+          </div>
+          <p class="hint" id="alcNote">영수증에 술값이 따로 있다면 그 금액 ÷ 총액으로 넣으세요. 모르면 30~40%면 충분합니다.</p>
+        </div>
+
+        <div class="field">
+          <label class="field-label">참여자 <span id="memberCount">4명</span></label>
+          <div class="members" id="members"></div>
+          <button class="member-add" id="addMember" type="button">+ 참여자 추가</button>
+          <p class="hint">술을 마신 사람은 체크하세요. 조건은 대략으로 골라도 됩니다.</p>
+        </div>
+
+        <details class="adv">
+          <summary>정산 단위 · 주류 분담 방식</summary>
+          <div class="adv-body">
+            <div class="field">
+              <label class="field-label" for="unit">반올림 단위</label>
+              <select id="unit">
+                <option value="1000" selected>1,000원 단위 (계좌이체 편함)</option>
+                <option value="100">100원 단위</option>
+                <option value="1">1원 단위 (정확히)</option>
+              </select>
+            </div>
+            <label class="check">
+              <input type="checkbox" id="alcOnly" checked>
+              주류값은 술 마신 사람끼리만 나눈다
+            </label>
+            <p class="hint">끄면 주류값도 모든 참석자가 참석 비율대로 나눕니다.</p>
+          </div>
+        </details>
+      </div>
+
+      <aside class="result">
+        <div class="res-card">
+          <p class="res-label" id="avgLabel">1인당 평균</p>
+          <p class="res-value"><span id="avgPay">0</span><span class="unit">원</span></p>
+          <p class="res-sub" id="dutchSub">계산 중…</p>
+          <p class="res-badge" id="dutchBadge">—</p>
+          <p class="res-quote" id="dutchQuote" aria-live="polite"></p>
+
+          <div class="pay-list" id="payList"></div>
+
+          <dl class="res-rows">
+            <div><dt>단순 N빵이면</dt><dd id="rSimple">—</dd></div>
+            <div><dt>가장 많이 내는 사람</dt><dd id="rMax">—</dd></div>
+            <div><dt>가장 적게 내는 사람</dt><dd id="rMin">—</dd></div>
+            <div><dt>음식값 / 주류값</dt><dd id="rPots">—</dd></div>
+            <div class="total"><dt>합계</dt><dd id="rTotal">—</dd></div>
+          </dl>
+          <p class="res-note">반올림으로 생긴 차액은 가장 많이 내는 사람에게 더해 합계를 총액과 정확히 맞춥니다.</p>
+
+          <div class="res-actions">
+            <button type="button" class="btn" id="copyBtn">정산 내역 복사</button>
+            <button type="button" class="btn btn-primary" id="shareBtn">공유하기</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="detailTitle">
+    <div class="sec-head">
+      <div>
+        <h2 id="detailTitle">누가 얼마씩 내나</h2>
+        <p>음식값과 주류값을 따로 나눈 뒤 합친 금액입니다. 합계는 총 결제 금액과 정확히 일치합니다.</p>
+      </div>
+    </div>
+    <div class="card" style="padding:8px 4px 4px">
+      <div class="tbl-scroll">
+        <table class="tbl tbl-settle">
+          <caption>참여자별 정산 내역</caption>
+          <thead>
+            <tr><th scope="col">이름</th><th scope="col">조건</th><th scope="col">술</th><th scope="col">음식값</th><th scope="col">주류값</th><th scope="col">낼 금액</th></tr>
+          </thead>
+          <tbody id="detailBody"></tbody>
+        </table>
+      </div>
+      <p class="hint" style="padding:0 12px 8px">조건이 '전체 참석'이고 모두 술을 마셨다면 단순 N빵과 같은 결과가 나옵니다. 차이가 나는 순간이 이 계산기가 필요한 순간입니다.</p>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="barTitle">
+    <div class="sec-head">
+      <div>
+        <h2 id="barTitle">분담 비율 한눈에</h2>
+        <p>막대 길이가 각자 부담하는 비중입니다.</p>
+      </div>
+    </div>
+    <div class="card" style="padding:18px">
+      <div class="split-bar" id="splitBar" aria-hidden="true"></div>
+      <div class="split-legend" id="splitLegend"></div>
+    </div>
+  </section>
+
+  <!-- [AD SLOT 2] 중간 -->
+  <div class="ad-slot" data-ad="mid" aria-hidden="true">광고 영역 · AD SLOT 2</div>
+
+  <section class="sec" aria-labelledby="guideTitle">
+    <div class="card guide">
+      <h2 id="guideTitle">이 계산기는 이렇게 나눕니다</h2>
+
+      <div class="formula">
+        <p><b>음식값</b> = 총액 × (1 − 주류 비중) → 참석 가중치 비율대로</p>
+        <p><b>주류값</b> = 총액 × 주류 비중 → 술 마신 사람의 가중치 비율대로</p>
+        <p><b>개인 부담</b> = 음식값 분담 + 주류값 분담 (반올림 후 합계 보정)</p>
+      </div>
+
+      <p>더치페이가 어려운 이유는 계산이 아니라 <strong>설명</strong>입니다. "너는 술 안 마셨잖아"는 말이 나오는 순간 분위기가 상합니다. 이 계산기는 그 말을 숫자로 대신합니다. 총액과 인원, 조건만 넣으면 각자 금액이 나오고, 그 내역을 그대로 단톡방에 붙여넣을 수 있습니다.</p>
+
+      <h3>1. 총액을 두 덩어리로 나눕니다</h3>
+      <p>모임 비용은 크게 음식값과 주류값으로 나뉩니다. 술을 마신 사람과 안 마신 사람이 같은 안주를 먹었더라도, 술값까지 똑같이 나누면 안 마신 사람이 손해입니다. 그래서 총액에서 주류 비중만큼을 먼저 떼어내고, 그 몫은 술을 마신 사람끼리 나눕니다. 나머지 음식값은 참석한 모두가 나눕니다.</p>
+      <p>예를 들어 총 180,000원, 주류 비중 35%라면 주류값 63,000원, 음식값 117,000원입니다. 술을 마신 3명이 63,000원을 나누고, 4명이 117,000원을 나눕니다.</p>
+
+      <h3>2. 참석 시간이 짧으면 가중치를 낮춥니다</h3>
+      <p>1차만 참석하고 간 사람과 처음부터 끝까지 있던 사람이 같은 금액을 내는 것도 불공평합니다. 그래서 참석 형태에 가중치를 둡니다.</p>
+      <ul>
+        <li><strong>전체 참석</strong> 1.0</li>
+        <li><strong>늦게 도착</strong> 0.8 — 1차 중반 이후 합류</li>
+        <li><strong>먼저 귀가</strong> 0.7 — 1차 끝나고 감</li>
+        <li><strong>1차만 참석</strong> 0.6</li>
+        <li><strong>2차만 참석</strong> 0.4</li>
+        <li><strong>잠깐 들름</strong> 0.25 — 얼굴만 보고 감</li>
+      </ul>
+      <p>이 가중치는 정답이 아니라 협상의 출발점입니다. 팀 분위기에 맞게 조건을 골라 조정하세요.</p>
+
+      <h3>3. 반올림은 합계를 맞춰서</h3>
+      <p>각자 금액을 1,000원 단위로 반올림하면 합계가 총액과 몇백원 어긋납니다. 이 계산기는 차액을 가장 많이 내는 사람의 금액에 더해 합계를 정확히 맞춥니다. 계좌이체할 때 1,000원 단위가 편하고, 정확한 금액을 원하면 1원 단위를 고르세요.</p>
+
+      <h3>4. 이런 경우엔 이렇게</h3>
+      <ul>
+        <li><strong>술을 아무도 안 마셨다면</strong> — 주류 비중을 0%로 두세요. 단순 N빵이 됩니다.</li>
+        <li><strong>한 명이 대표로 결제했다면</strong> — 총액은 그대로 넣고, 각자 금액을 그 사람에게 보내면 됩니다.</li>
+        <li><strong>법인카드로 결제했다면</strong> — 이 계산기는 개인 정산용입니다. 회계 처리와는 무관합니다.</li>
+        <li><strong>더치페이를 거부하는 사람이 있다면</strong> — 이 계산기를 보여주세요. 숫자는 감정이 없습니다.</li>
+      </ul>
+      <p class="note">이 계산기는 참석 형태를 가중치로 근사합니다. 실제 주문 내역, 개인별 추가 주문, 서비스 제공 여부까지 반영하지는 않습니다.</p>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="faqTitle">
+    <div class="sec-head"><div><h2 id="faqTitle">자주 묻는 질문</h2></div></div>
+
+    <details class="faq" open>
+      <summary>왜 술값과 음식값을 나눠 계산하나요?</summary>
+      <div class="a"><p>같은 자리에서 같은 안주를 먹어도 술을 마신 사람과 안 마신 사람이 쓴 돈은 다릅니다. 총액을 그대로 N빵하면 술을 안 마신 사람이 남의 술값을 내게 됩니다.</p><p>그래서 총액을 주류 비중만큼 떼어 술 마신 사람끼리 나누고, 나머지는 참석한 사람이 참석 비율대로 나누는 방식이 가장 납득이 갑니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>주류 비중은 몇 %로 두면 되나요?</summary>
+      <div class="a"><p>술값이 전체 결제액에서 차지하는 비율입니다. 영수증에 주류 항목이 있으면 그 금액을 총액으로 나눠 넣으세요.</p><p>보통 회식에서는 30~45% 정도이고, 술을 많이 마신 자리라면 50% 이상입니다. 정확하지 않아도 괜찮습니다. 비중을 0%로 두면 단순 N빵과 같아집니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>1차만 참석한 사람은 어떻게 계산되나요?</summary>
+      <div class="a"><p>참석 시간이 짧은 만큼 소비한 몫도 작다고 보고 가중치를 낮춥니다. 기본값은 전체 참석 1.0, 늦게 도착 0.8, 먼저 귀가 0.7, 1차만 참석 0.6, 2차만 참석 0.4, 잠깐 들름 0.25입니다.</p><p>음식값은 이 가중치 비율로 나누고, 술값은 술을 마신 사람의 가중치 비율로 나눕니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>반올림은 어떻게 처리하나요?</summary>
+      <div class="a"><p>1,000원·100원·1원 단위 중에서 고를 수 있습니다. 각자 금액을 반올림하면 합계가 총액과 몇백원 어긋날 수 있어서, 차액은 가장 많이 내는 사람의 금액에 더해 합계를 정확히 맞춥니다.</p><p>계좌이체할 때 1,000원 단위가 편합니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>술을 아무도 안 마셨다면?</summary>
+      <div class="a"><p>주류 비중을 0%로 두거나, 고급 설정에서 '주류값은 술 마신 사람끼리'를 끄면 됩니다. 술 마신 사람이 없으면 주류 몫은 자동으로 전체 참석자에게 참석 비율대로 분배됩니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>이름과 금액이 서버로 전송되나요?</summary>
+      <div class="a"><p>아니요. 참여자 이름과 금액은 브라우저 안에서만 계산되고 서버로 전송되지 않습니다. 새로고침하면 입력한 내용이 사라지므로, 정산 내역을 복사해 두세요.</p></div>
+    </details>
+  </section>
+
+  <section class="sec">
+    <div class="card guide">
+      <h3 style="margin-top:0">함께 쓰면 좋은 계산기</h3>
+      <p>모임 다음 날 숙취로 딴짓했다면 <a href="../lupin/">루팡 계산기</a>로 그 시간의 값을 계산해 볼 수 있습니다. 회식비를 아끼고 싶다면 <a href="../impulse/">충동구매 시간 환산기</a>, 내 시급이 궁금하다면 <a href="../real-wage/">진짜 시급 계산기</a>도 함께 보세요.</p>
+    </div>
+  </section>
+
+  <!-- [AD SLOT 3] 하단 -->
+  <div class="ad-slot" data-ad="bottom" aria-hidden="true">광고 영역 · AD SLOT 3</div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap rows">
+    <nav aria-label="사이트 메뉴">
+      <a href="../">전체 계산기</a>
+      <a href="../salary/">퇴사·월급</a>
+      <a href="../fx/">환율</a>
+      <a href="../delivery/">배달 수수료</a>
+      <a href="../real-wage/">진짜 시급</a>
+      <a href="../impulse/">충동구매</a>
+      <a href="../runway/">퇴사 생존</a>
+      <a href="../lupin/">루팡</a>
+    </nav>
+    <div><b>더치노트</b> — 눈치 없는 더치페이 정산기 · 생활금융 계산기 연구소 8호 · 무료</div>
+    <div>참석 형태는 가중치로 근사한 값이며, 실제 주문·추가 결제·서비스 내역과 다를 수 있습니다. 최종 금액은 모임에서 합의해 정하세요.</div>
+    <div>입력한 이름과 금액은 서버로 전송되지 않고 새로고침 시 사라집니다. · © 2026 생활금융 계산기 연구소</div>
+  </div>
+</footer>
+
+<script src="../assets/calc.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>

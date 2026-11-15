@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>월급 루팡 계산기 | 회사에서 슬쩍 가져간 돈은 얼마 — 루팡노트</title>
+<meta name="description" content="화장실·커피·유튜브·메신저, 하루에 딴짓한 시간이 얼마짜리인지 계산합니다. 오늘 회사에서 슬쩍 가져간 돈과 이번 달·1년 금액, 루팡 등급까지. 순수 재미용 무료 계산기.">
+<meta name="keywords" content="월급 루팡, 루팡 계산기, 딴짓 시간, 회사에서 가져간 돈, 월급 루팡 손익, 직장인 재미 계산기, 시급 계산, 커피 타임, 업무 중 휴식">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta name="author" content="루팡노트">
+<meta name="theme-color" content="#e8590c">
+<meta name="format-detection" content="telephone=no">
+<link rel="canonical" href="https://lifecalc-kr.github.io/lupin/">
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="생활금융 계산기 연구소">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:title" content="월급 루팡 계산기 — 회사에서 슬쩍 가져간 돈">
+<meta property="og:description" content="오늘 딴짓한 시간을 돈으로 바꿔 봅니다. 이번 달, 1년, 그리고 루팡 등급까지. 순수 재미용.">
+<meta property="og:url" content="https://lifecalc-kr.github.io/lupin/">
+<meta property="og:image" content="https://lifecalc-kr.github.io/og-image.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="월급 루팡 계산기 — 루팡노트">
+<meta name="twitter:description" content="오늘 회사에서 슬쩍 가져간 돈은 얼마? 루팡 등급도 나옵니다.">
+<meta name="twitter:image" content="https://lifecalc-kr.github.io/og-image.png">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='24' fill='%23e8590c'/%3E%3Ctext x='50' y='72' font-size='50' font-family='sans-serif' font-weight='bold' fill='white' text-anchor='middle'%3E%EB%A3%A8%3C/text%3E%3C/svg%3E">
+<link rel="stylesheet" href="../assets/calc.css">
+<style>
+  :root { --accent: #e8590c; --accent-2: #c2410c; --accent-soft: #fff1e8; --accent-line: #f6d3bd; }
+  @media (prefers-color-scheme: dark) {
+    :root { --accent: #ff9d63; --accent-2: #ffb98a; --accent-soft: #33200f; --accent-line: #4d2f17; }
+  }
+</style>
+
+<!-- Google AdSense (pub-2493112023638381) — 승인 후 주석 해제
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2493112023638381" crossorigin="anonymous"></script>
+-->
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "루팡노트 — 월급 루팡 손익 계산기",
+      "url": "https://lifecalc-kr.github.io/lupin/",
+      "applicationCategory": "EntertainmentApplication",
+      "operatingSystem": "Web",
+      "inLanguage": "ko-KR",
+      "description": "근무 중 딴짓한 시간(화장실·커피·유튜브·메신저)을 시급으로 환산해 하루·월·연 금액과 루팡 등급을 보여주는 재미용 무료 계산기.",
+      "offers": { "@type": "Offer", "price": "0", "priceCurrency": "KRW" },
+      "featureList": [
+        "딴짓 항목별 시간 입력과 금액 환산",
+        "오늘·이번 달·1년 금액 계산",
+        "근무시간 대비 비율과 루팡 등급",
+        "커피·치킨·최저시급 환산 비교",
+        "카톡 공유용 결과 문구"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "이 계산기로 실제 월급이 깎이나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "아니요. 회사에 청구되거나 급여에서 차감되는 금액이 전혀 아닙니다. 근무시간 중 딴짓한 시간을 '회사가 지급한 시간'으로 환산해 재미로 보여주는 값입니다. 근태 기록과도 무관합니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "월 근무일수는 며칠로 넣어야 하나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "주 5일 근무라면 한 달 평균 20.9일(365일 ÷ 7일 × 5일 ÷ 12개월)입니다. 회사가 21일이나 22일로 계산한다면 그 값을 넣어도 됩니다. 근무일수를 크게 넣을수록 한 달 금액이 커집니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "딴짓 시간은 어떻게 재나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "하루 평균으로 대략 넣으면 됩니다. 화장실 15~20분, 커피·담배 20~30분, 유튜브·웹서핑 30~60분, 메신저·수다 30분 정도가 흔합니다. 정확할 필요는 없고, 본인이 납득할 숫자를 넣으면 됩니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "세전과 세후 중 어떤 걸 넣어야 하나요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "회사가 나에게 지급한 금액을 보려면 세전, 내가 실제로 받은 돈 기준으로 보려면 세후입니다. 이 계산기는 둘 다 보여주며, 세후를 넣으면 4대보험·소득세를 역산합니다. 참고로 루팡 금액은 세전 기준이 더 큽니다." }
+        },
+        {
+          "@type": "Question",
+          "name": "루팡 등급 기준은 무엇인가요?",
+          "acceptedAnswer": { "@type": "Answer", "text": "하루 근무시간 중 딴짓한 시간의 비율로 정합니다. 3% 미만은 성실한 모범사원, 3~8% 초보 루팡, 8~15% 중급, 15~25% 고수, 25% 이상은 전설의 루팡입니다. 어디까지나 재미를 위한 구분입니다." }
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="../">
+      <span class="brand-mark" aria-hidden="true">루</span>
+      루팡노트 <span class="brand-sub">LUPIN</span>
+    </a>
+    <div class="head-right">
+      <span class="status-pill"><span class="dot" aria-hidden="true"></span>순수 재미용</span>
+      <a class="hub-link" href="../">계산기 8종 <span aria-hidden="true">↗</span></a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <span class="hero-kicker">7호 · 직장인 유쾌형</span>
+    <h1>회사에서 슬쩍 <span class="hl">가져간 돈</span>, 얼마일까?</h1>
+    <p>화장실, 커피, 유튜브, 메신저. 오늘 딴짓한 시간을 <strong>회사가 지급한 시간</strong>으로 바꿔 봅니다. 진지하게 볼 필요는 없습니다.</p>
+    <div class="hstats">
+      <span class="hstat"><b>20.9일</b> 월 평균 근무일</span>
+      <span class="hstat"><b>100분</b> 흔한 하루 딴짓</span>
+      <span class="hstat"><b>재미용</b> 급여 차감 아님</span>
+    </div>
+  </section>
+
+  <!-- [AD SLOT 1] 상단
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2493112023638381" data-ad-slot="0000000000" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+  -->
+  <div class="ad-slot" data-ad="top" aria-hidden="true">광고 영역 · AD SLOT 1</div>
+
+  <section class="card calc" aria-labelledby="calcTitle">
+    <div class="calc-head">
+      <h2 id="calcTitle">오늘의 루팡 손익</h2>
+      <p>딴짓 시간을 바꾸면 결과가 실시간으로 바뀝니다. 입력값은 이 브라우저에만 저장됩니다.</p>
+    </div>
+
+    <div class="calc-grid">
+      <div class="inputs">
+
+        <div class="field">
+          <div class="seg" role="group" aria-label="급여 기준">
+            <button type="button" data-mode="gross" aria-pressed="true">월급 세전</button>
+            <button type="button" data-mode="net" aria-pressed="false">월급 세후(실수령)</button>
+          </div>
+          <label class="field-label" for="pay">월급</label>
+          <div class="money">
+            <input id="pay" type="text" inputmode="numeric" value="3,500,000">
+            <span class="unit">원</span>
+          </div>
+          <div class="chips" id="payChips">
+            <button class="chip" type="button" data-value="2500000">250만</button>
+            <button class="chip" type="button" data-value="3000000">300만</button>
+            <button class="chip" type="button" data-value="3500000">350만</button>
+            <button class="chip" type="button" data-value="5000000">500만</button>
+          </div>
+        </div>
+
+        <div class="row2">
+          <div class="field">
+            <label class="field-label" for="days">월 근무일</label>
+            <div class="num-box"><input id="days" type="number" min="1" max="31" step="0.5" value="20.9" inputmode="decimal"><span>일</span></div>
+          </div>
+          <div class="field">
+            <label class="field-label" for="hours">하루 근무</label>
+            <div class="num-box"><input id="hours" type="number" min="1" max="16" step="0.5" value="8" inputmode="decimal"><span>시간</span></div>
+          </div>
+        </div>
+
+        <h3 class="sub-h">오늘 뭘 했나요 (하루 평균)</h3>
+        <div class="row2">
+          <div class="field">
+            <label class="field-label" for="wc">화장실</label>
+            <div class="num-box"><input id="wc" type="number" min="0" max="180" step="5" value="20" inputmode="numeric"><span>분</span></div>
+          </div>
+          <div class="field">
+            <label class="field-label" for="coffee">커피 · 담배</label>
+            <div class="num-box"><input id="coffee" type="number" min="0" max="180" step="5" value="20" inputmode="numeric"><span>분</span></div>
+          </div>
+        </div>
+        <div class="row2">
+          <div class="field">
+            <label class="field-label" for="youtube">유튜브 · 웹서핑</label>
+            <div class="num-box"><input id="youtube" type="number" min="0" max="480" step="5" value="40" inputmode="numeric"><span>분</span></div>
+          </div>
+          <div class="field">
+            <label class="field-label" for="chat">메신저 · 수다</label>
+            <div class="num-box"><input id="chat" type="number" min="0" max="480" step="5" value="20" inputmode="numeric"><span>분</span></div>
+          </div>
+        </div>
+        <div class="chips" id="timeChips">
+          <button class="chip" type="button" data-add="0">딴짓 없음</button>
+          <button class="chip" type="button" data-add="30">+30분</button>
+          <button class="chip" type="button" data-add="60">+1시간</button>
+          <button class="chip" type="button" data-add="120">+2시간</button>
+        </div>
+        <p class="hint" id="timeSum">하루 딴짓 합계 100분</p>
+
+        <details class="adv">
+          <summary>세후 계산 설정</summary>
+          <div class="adv-body">
+            <div class="row2">
+              <div class="field">
+                <label class="field-label" for="dependents">부양가족 수 <span>본인 포함</span></label>
+                <div class="num-box"><input id="dependents" type="number" min="1" max="10" step="1" value="1" inputmode="numeric"><span>명</span></div>
+              </div>
+              <div class="field">
+                <label class="field-label" for="meal">월 식대 <span>비과세 20만</span></label>
+                <div class="num-box"><input id="meal" type="text" inputmode="numeric" value="200,000"><span>원</span></div>
+              </div>
+            </div>
+          </div>
+        </details>
+      </div>
+
+      <aside class="result">
+        <div class="res-card">
+          <p class="res-label">오늘 회사에서 슬쩍 가져간 돈</p>
+          <p class="res-value"><span id="lupinToday">0</span><span class="unit">원</span></p>
+          <p class="res-sub" id="lupinSub">계산 중…</p>
+          <p class="res-badge" id="lupinGrade">—</p>
+          <p class="res-quote" id="lupinQuote" aria-live="polite"></p>
+
+          <dl class="res-rows">
+            <div><dt>이번 달 누적</dt><dd id="rMonth">—</dd></div>
+            <div><dt>1년 누적</dt><dd id="rYear">—</dd></div>
+            <div><dt>근무시간 대비</dt><dd id="rPct">—</dd></div>
+            <div><dt>시간당 회사 비용</dt><dd id="rHourly">—</dd></div>
+            <div><dt>분당</dt><dd id="rMinute">—</dd></div>
+            <div><dt>같은 돈으로</dt><dd id="rAlt">—</dd></div>
+            <div class="total"><dt>1년을 출근일로</dt><dd id="rDaysEq">—</dd></div>
+          </dl>
+          <p class="res-note">순수 재미용 계산입니다. 실제 급여에서 차감되지 않고, 회사에 청구되지도 않습니다.</p>
+
+          <div class="res-actions">
+            <button type="button" class="btn" id="copyBtn">결과 복사</button>
+            <button type="button" class="btn btn-primary" id="shareBtn">공유하기</button>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="breakTitle">
+    <div class="sec-head">
+      <div>
+        <h2 id="breakTitle">항목별로 얼마인가</h2>
+        <p>같은 딴짓도 시간이 다르면 금액이 다릅니다.</p>
+      </div>
+    </div>
+    <div class="card" style="padding:8px 4px 4px">
+      <div class="tbl-scroll">
+        <table class="tbl">
+          <caption>딴짓 항목별 하루·월 금액</caption>
+          <thead>
+            <tr><th scope="col">항목</th><th scope="col">시간</th><th scope="col">하루</th><th scope="col">이번 달</th><th scope="col">비중</th></tr>
+          </thead>
+          <tbody id="breakBody"></tbody>
+        </table>
+      </div>
+      <p class="hint" style="padding:0 12px 8px">화장실은 사람의 기본권입니다. 계산기의 유머를 위해 넣었을 뿐, 참지 말라는 뜻이 아닙니다.</p>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="gradeTitle">
+    <div class="sec-head">
+      <div>
+        <h2 id="gradeTitle">루팡 등급표</h2>
+        <p>하루 근무시간 중 딴짓한 시간의 비율로 정합니다.</p>
+      </div>
+    </div>
+    <div class="card" style="padding:8px 4px 4px">
+      <div class="tbl-scroll">
+        <table class="tbl">
+          <caption>딴짓 비율에 따른 등급</caption>
+          <thead>
+            <tr><th scope="col">등급</th><th scope="col">비율</th><th scope="col">하루 예시</th><th scope="col">한마디</th></tr>
+          </thead>
+          <tbody id="gradeBody"></tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- [AD SLOT 2] 중간 -->
+  <div class="ad-slot" data-ad="mid" aria-hidden="true">광고 영역 · AD SLOT 2</div>
+
+  <section class="sec" aria-labelledby="guideTitle">
+    <div class="card guide">
+      <h2 id="guideTitle">이 계산기는 이렇게 계산합니다</h2>
+
+      <div class="formula">
+        <p><b>시간당 회사 비용</b> = 월급 ÷ (월 근무일 × 하루 근무시간)</p>
+        <p><b>오늘 가져간 돈</b> = 딴짓 합계(분) × 시간당 비용 ÷ 60</p>
+        <p><b>이번 달</b> = 오늘 × 월 근무일 · <b>1년</b> = 이번 달 × 12</p>
+      </div>
+
+      <p>이 계산기의 핵심은 <strong>"시간은 회사가 산 것"</strong>이라는 발상입니다. 월급제에서 회사는 내 하루 8시간을 사고, 나는 그 시간을 회사의 목적에 씁니다. 그중 100분을 다른 곳에 썼다면, 그 100분의 값은 회사가 낸 셈이죠. 물론 유머입니다. 실제로 회사가 딴짓 시간을 따로 계산해 급여에서 빼지는 않습니다.</p>
+
+      <h3>1. 왜 딴짓은 늘 비슷한 시간일까</h3>
+      <p>화장실 20분, 커피 20분, 유튜브 40분, 메신저 20분. 이 조합이면 하루 100분, 근무시간 8시간(480분)의 약 21%입니다. 사람이 하루 종일 같은 일에 집중하는 시간은 길지 않습니다. 그래서 딴짓은 게으름이라기보다 <strong>집중의 리듬</strong>에 가깝습니다. 이 계산기는 그 리듬을 돈으로 번역해 볼 뿐입니다.</p>
+
+      <h3>2. 세전이냐 세후냐로 금액이 달라집니다</h3>
+      <p>회사가 나에게 지급한 금액 기준이면 세전입니다. 월급 350만원, 월 20.9일, 하루 8시간이면 시간당 20,933원이고, 100분이면 하루 34,889원입니다. 반면 내가 실제로 받은 돈(실수령 약 304만원) 기준이면 시간당 18,171원, 하루 30,285원입니다. 루팡의 규모를 자랑하려면 세전, 통장 기준으로 말하려면 세후를 쓰세요.</p>
+
+      <h3>3. 월 근무일은 20.9일이 평균입니다</h3>
+      <p>365일 ÷ 7일 × 5일 ÷ 12개월 = 20.9일입니다. 회사가 21일이나 22일로 계산한다면 그 값을 넣어도 됩니다. 근무일수를 크게 넣을수록 이번 달·1년 금액이 커지고, 하루 금액은 근무일수가 늘수록 작아집니다(같은 월급을 더 많은 날로 나누므로).</p>
+
+      <h3>4. 이 계산기가 하지 않는 것</h3>
+      <ul>
+        <li><strong>급여 차감</strong> — 실제 급여·근태와 전혀 무관합니다.</li>
+        <li><strong>생산성 평가</strong> — 딴짓이 업무 성과에 미치는 영향은 계산하지 않습니다.</li>
+        <li><strong>야근 보정</strong> — 야근이 많다면 하루 근무시간을 실제 시간으로 바꿔 보세요. 시간당 비용이 낮아집니다.</li>
+      </ul>
+      <p class="note">이 페이지는 재미를 위한 콘텐츠입니다. 회사 규정, 근로계약, 근태 관리와는 무관하며 어떤 판단 근거로도 쓸 수 없습니다.</p>
+    </div>
+  </section>
+
+  <section class="sec" aria-labelledby="faqTitle">
+    <div class="sec-head"><div><h2 id="faqTitle">자주 묻는 질문</h2></div></div>
+
+    <details class="faq" open>
+      <summary>이 계산기로 실제 월급이 깎이나요?</summary>
+      <div class="a"><p>아니요. 회사에 청구되거나 급여에서 차감되는 금액이 전혀 아닙니다. 근무시간 중 딴짓한 시간을 '회사가 지급한 시간'으로 환산해 재미로 보여주는 값입니다.</p><p>근태 기록과도 무관합니다. 마음 편히 써 주세요.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>월 근무일수는 며칠로 넣어야 하나요?</summary>
+      <div class="a"><p>주 5일 근무라면 한 달 평균 20.9일(365일 ÷ 7일 × 5일 ÷ 12개월)입니다. 회사가 21일이나 22일로 계산한다면 그 값을 넣어도 됩니다.</p><p>근무일수를 크게 넣을수록 한 달 금액이 커집니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>딴짓 시간은 어떻게 재나요?</summary>
+      <div class="a"><p>하루 평균으로 대략 넣으면 됩니다. 화장실 15~20분, 커피·담배 20~30분, 유튜브·웹서핑 30~60분, 메신저·수다 30분 정도가 흔합니다.</p><p>정확할 필요는 없고, 본인이 납득할 숫자를 넣으면 됩니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>세전과 세후 중 어떤 걸 넣어야 하나요?</summary>
+      <div class="a"><p>회사가 나에게 지급한 금액을 보려면 세전, 내가 실제로 받은 돈 기준으로 보려면 세후입니다. 이 계산기는 둘 다 보여주며, 세후를 넣으면 4대보험·소득세를 역산합니다.</p><p>참고로 루팡 금액은 세전 기준이 더 큽니다.</p></div>
+    </details>
+
+    <details class="faq">
+      <summary>루팡 등급 기준은 무엇인가요?</summary>
+      <div class="a"><p>하루 근무시간 중 딴짓한 시간의 비율로 정합니다. 3% 미만은 성실한 모범사원, 3~8% 초보 루팡, 8~15% 중급, 15~25% 고수, 25% 이상은 전설의 루팡입니다.</p><p>어디까지나 재미를 위한 구분입니다.</p></div>
+    </details>
+  </section>
+
+  <section class="sec">
+    <div class="card guide">
+      <h3 style="margin-top:0">이 시간이 진짜 얼마인지 궁금하다면</h3>
+      <p>딴짓까지 넣은 내 실제 시급은 <a href="../real-wage/">진짜 시급 계산기</a>에서 확인할 수 있습니다. 오늘 딴짓한 시간으로 물건을 사려면 얼마나 일해야 하는지는 <a href="../impulse/">충동구매 시간 환산기</a>가 알려줍니다. 이직을 고민 중이라면 <a href="../runway/">퇴사 생존 개월수 계산기</a>도 함께 보세요.</p>
+    </div>
+  </section>
+
+  <!-- [AD SLOT 3] 하단 -->
+  <div class="ad-slot" data-ad="bottom" aria-hidden="true">광고 영역 · AD SLOT 3</div>
+</main>
+
+<footer class="site-foot">
+  <div class="wrap rows">
+    <nav aria-label="사이트 메뉴">
+      <a href="../">전체 계산기</a>
+      <a href="../salary/">퇴사·월급</a>
+      <a href="../fx/">환율</a>
+      <a href="../delivery/">배달 수수료</a>
+      <a href="../real-wage/">진짜 시급</a>
+      <a href="../impulse/">충동구매</a>
+      <a href="../runway/">퇴사 생존</a>
+      <a href="../dutch/">더치페이</a>
+    </nav>
+    <div><b>루팡노트</b> — 월급 루팡 손익 계산기 · 생활금융 계산기 연구소 7호 · 순수 재미용</div>
+    <div>이 페이지의 계산은 유머를 위한 것이며 실제 급여·근태·노무 관리와 무관합니다. 회사 규정에 따라 근무시간을 준수하세요.</div>
+    <div>세후 계산은 식대 비과세 20만원·부양가족 1명을 가정한 간이 추정입니다. · © 2026 생활금융 계산기 연구소</div>
+  </div>
+</footer>
+
+<script src="../assets/calc.js"></script>
+<script src="../assets/tax2026.js"></script>
+<script src="assets/core.js"></script>
+<script src="assets/app.js"></script>
+</body>
+</html>
