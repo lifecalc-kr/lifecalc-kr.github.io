@@ -18,15 +18,15 @@
     var days = hoursPerDay > 0 ? hours / hoursPerDay : 0;
 
     var items = [
-      { name: '커피', unit: 4500 },
-      { name: '치킨', unit: 25000 },
-      { name: '영화 관람', unit: 15000 },
-      { name: '편의점 도시락', unit: 4500 }
+      { name: '커피', unit: 4500, counter: '잔' },
+      { name: '치킨', unit: 25000, counter: '마리' },
+      { name: '영화 관람', unit: 15000, counter: '편' },
+      { name: '편의점 도시락', unit: 4500, counter: '개' }
     ];
     var alt = items
-      .map(function (it) { return { name: it.name, count: price / it.unit, unit: it.unit }; })
+      .map(function (it) { return { name: it.name, count: Math.floor(price / it.unit), counter: it.counter, unit: it.unit }; })
       .filter(function (it) { return it.count >= 1; })
-      .sort(function (a, b) { return a.count - b.count; })
+      .sort(function (a, b) { return a.count - b.count || a.unit - b.unit; })
       .slice(0, 2);
 
     return {

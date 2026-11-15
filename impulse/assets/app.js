@@ -72,7 +72,7 @@
     LC.text('rMin', (Math.round(r.minHours * 10) / 10) + '시간');
     LC.text('rPct', r.pct == null ? '월급 입력 시' : (Math.round(r.pct * 10) / 10) + '%');
     $('rAlt').innerHTML = r.alt.length
-      ? r.alt.map(function (a) { return a.name + ' ' + (Math.round(a.count * 10) / 10) + '개'; }).join(' · ')
+      ? r.alt.map(function (a) { return a.name + ' ' + a.count + a.counter; }).join(' · ')
       : '<small>단위보다 작음</small>';
     $('rSave').innerHTML = r.wage > 0 ? (Math.round(r.hours * 10) / 10) + '시간 <small>안 사면 그대로 남습니다</small>' : '—';
 

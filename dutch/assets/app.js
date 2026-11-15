@@ -145,7 +145,7 @@
     } else {
       var low = r.results.filter(function (x) { return x.amount === r.min; })[0];
       var high = r.results.filter(function (x) { return x.amount === r.max; })[0];
-      msg = low.name + '은(는) ' + LC.won(r.simple - r.min) + ' 적게, ' + high.name + '은(는) ' + LC.won(r.max - r.simple) + ' 더 냅니다. 단순 N빵(' + LC.won(r.simple) + ')보다 서로 납득하기 쉬운 금액입니다.';
+      msg = josa(low.name, '은', '는') + ' ' + LC.won(r.simple - r.min) + ' 적게, ' + josa(high.name, '은', '는') + ' ' + LC.won(r.max - r.simple) + ' 더 냅니다. 단순 N빵(' + LC.won(r.simple) + ')보다 서로 납득하기 쉬운 금액입니다.';
     }
     quote.textContent = msg;
     quote.className = 'res-quote';
@@ -173,6 +173,17 @@
     return String(s).replace(/[&<>"']/g, function (c) {
       return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
     });
+  }
+
+  /* 받침에 맞는 조사 (한글 음절만 판별, 그 외는 '은(는)') */
+  function josa(word, withJong, withoutJong) {
+    var s = String(word || '');
+    if (!s) return s;
+    var code = s.charCodeAt(s.length - 1);
+    if (code >= 0xAC00 && code <= 0xD7A3) {
+      return s + ((code - 0xAC00) % 28 !== 0 ? withJong : withoutJong);
+    }
+    return s + withJong + '(' + withoutJong + ')';
   }
 
   function renderDetail(r) {
