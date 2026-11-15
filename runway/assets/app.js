@@ -195,15 +195,16 @@
     /* 6개월 마지노선 */
     if (6 <= xMax) {
       s.push('<line class="marker" x1="' + X(6).toFixed(1) + '" y1="' + pad.t + '" x2="' + X(6).toFixed(1) + '" y2="' + (H - pad.b) + '"/>');
-      s.push('<text x="' + (X(6) + 4).toFixed(1) + '" y="' + (pad.t + 10) + '" style="fill:var(--warm)">마지노선 6개월</text>');
+      s.push('<text x="' + (X(6) + 4).toFixed(1) + '" y="' + (H - pad.b - 7) + '" style="fill:var(--warm)">마지노선 6개월</text>');
     }
 
-    /* 실업급여 종료 */
+    /* 실업급여 종료 (6개월 선과 가까우면 라벨을 위로 올림) */
     if (r.uiOn && r.uiMonths > 0 && r.uiMonths < xMax) {
-      s.push('<line class="marker" x1="' + X(r.uiMonths).toFixed(1) + '" y1="' + pad.t + '" x2="' + X(r.uiMonths).toFixed(1) + '" y2="' + (H - pad.b) + '" style="stroke:var(--accent-2);opacity:.55"/>');
-      if (X(r.uiMonths) < W - 90) {
-        s.push('<text x="' + (X(r.uiMonths) + 4).toFixed(1) + '" y="' + (H - pad.b - 6) + '" style="fill:var(--accent-2)">실업급여 종료</text>');
-      }
+      var uiX = X(r.uiMonths);
+      s.push('<line class="marker" x1="' + uiX.toFixed(1) + '" y1="' + pad.t + '" x2="' + uiX.toFixed(1) + '" y2="' + (H - pad.b) + '" style="stroke:var(--accent-2);opacity:.5"/>');
+      var anchor = uiX > W - 110 ? 'end' : 'start';
+      var tx = uiX + (anchor === 'end' ? -5 : 5);
+      s.push('<text x="' + tx.toFixed(1) + '" y="' + (pad.t + 10) + '" text-anchor="' + anchor + '" style="fill:var(--accent-2)">실업급여 종료</text>');
     }
 
     s.push('</svg>');

@@ -134,7 +134,7 @@
         ? '<span style="color:var(--warn)">0.' + Math.round(res.ratio * 100) + '배</span>'
         : (Math.round(res.ratio * 100) / 100) + '배';
       html += '<tr' + (on ? ' class="on"' : '') + '>'
-        + '<th scope="row">' + row.label + (on ? ' <small>지금</small>' : '') + '</th>'
+        + '<th scope="row">' + row.label + (on ? ' <small>(지금)</small>' : '') + '</th>'
         + '<td>' + hhmm(res.dailyMin) + '</td>'
         + '<td>' + Math.round(res.monthHours) + '시간</td>'
         + '<td><b>' + LC.won(res.realNet) + '</b></td>'
