@@ -51,16 +51,23 @@
   };
 
   /* ── 텍스트 출력 ──────────────────────────────────── */
+  function resolve(sel) {
+    if (!sel) return null;
+    if (typeof sel !== 'string') return sel;
+    var byId = document.getElementById(sel);
+    if (byId) return byId;
+    try { return document.querySelector(sel); } catch (e) { return null; }
+  }
   LC.text = function (sel, value) {
-    var el = typeof sel === 'string' ? document.querySelector(sel) : sel;
+    var el = resolve(sel);
     if (el) el.textContent = value;
   };
   LC.html = function (sel, value) {
-    var el = typeof sel === 'string' ? document.querySelector(sel) : sel;
+    var el = resolve(sel);
     if (el) el.innerHTML = value;
   };
   LC.show = function (sel, on) {
-    var el = typeof sel === 'string' ? document.querySelector(sel) : sel;
+    var el = resolve(sel);
     if (el) el.hidden = !on;
   };
   LC.$$ = function (sel, root) { return Array.prototype.slice.call((root || document).querySelectorAll(sel)); };
